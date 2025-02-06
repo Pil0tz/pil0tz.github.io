@@ -69,8 +69,8 @@ h2 {
 	    display: inline-block;
 	    vertical-align: middle;
 	    width: 46px;
-	    height: 1px;
-	    background: rgb(192, 211, 218);
+	    height: 10px;
+	    background: rgb(29, 183, 239);
 	    margin: 0px 30px;
 	}
 }
@@ -128,12 +128,13 @@ table tr td :last-child {
 	margin-bottom: 0;
 }
 
-/*.detailed .entry p:first-of-type:first-letter {
-    float: left;
-    margin: 0.13em 0.05em 0 -0.05em;
-    font-size: 3.333em;
-    line-height: 0.75em;
-}*/
+// Make the first letter of blog twice as big
+// .detailed .entry p:first-of-type:first-letter {
+//     float: left;
+//     margin: 0.13em 0.05em 0 -0.05em;
+//     font-size: 3.333em;
+//     line-height: 0.75em;
+// }
 
 #search-container {
   text-align: center;
@@ -367,6 +368,13 @@ nav {
 .posts > .post {
   margin-top: 2em;
   margin-bottom: 2em;
+  min-height: 10%;
+  border-bottom: 1px solid $lightGray;
+}
+
+.posts > article.post {
+  margin-top: 2em;
+  margin-bottom: 2em;
   border-bottom: 1px solid $lightGray;
 }
 
@@ -375,11 +383,10 @@ nav {
   border-bottom: none;
 }
 
-// post settings
 .post {
   blockquote {
     margin: 1.8em .8em;
-    /*border-left: 2px solid $gray;*/
+    border-left: 2px solid $gray;
     padding: 0.1em 1em;
     color: $gray;
     font-size: 22px;
@@ -459,6 +466,7 @@ body:after {
   font-kerning: auto;
   font-feature-settings: "kern","liga","dlig","hlig","cswh";
   line-height: 1.2;
+  margin-left: 30%;
 }
 
 .page h1{

@@ -6,6 +6,7 @@ permalink:
 cover: /images/covers/chess-2-cover.jpg
 exclude: false
 ---
+...<br>...p<br>...p<br>...p
 <!--more-->
 
 

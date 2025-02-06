@@ -1,21 +1,47 @@
+// COVER IMAGES
 .cover-image {
     border-radius: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .cover-image.blogroll {
     object-fit: cover;
-    width: 250px;
-    height: 250px;
+    width: 25%;
+    height: 25%;
     float: left;
-    margin-right: 1.2em;
+    // margin-right: 1.2em;
 }
 
-.cover-image.post-cover {
+.cover-image.article {
+    object-fit: cover;
     width: 500px;
     height: 500px;
 }    
 
+
+// BLOGROLL
+  
+  .posts > article.post {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    // min-height: 100%;
+    border-bottom: 1px solid $lightGray;
+  }
+
+.excerpt {
+    display: flex;
+    margin-left: 300px;
+
+
+}
+.read-more {
+    text-transform: uppercase;
+    font-size: 15px;
+    margin-left: 1.2em;
+}
+
 .post-meta {
+    margin-left: 30%;
     display: flex;
     justify-content: space-between;
     align-items: center;
