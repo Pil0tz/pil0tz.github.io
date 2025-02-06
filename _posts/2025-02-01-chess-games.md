@@ -1,16 +1,8 @@
 ---
-layout: article
+layout: post
 title: Analyzing 200.000 Online Chess Games
-tags: Chess
-article_header:
-  type: cover
-  theme: dark
-  background-image: 
-    src: /assets/images/covers/chess-games-cover.jpg
-  image: 
-    src: /assets/images/covers/chess-games-cover.jpg
-#   background_color: '#203028'
-#   background_image: false
+categories: Chess
+permalink: /chess/analyzing-online-chess-games
 ---
 
 Openings are divided into many subvariations, of which there are too many to analyse them all now. Because of that I wanted to condense most of the subvariations into their main openings, and then look at the win rates of the 20 that were most commonly played in the dataset.

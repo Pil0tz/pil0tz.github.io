@@ -1,14 +1,8 @@
 ---
-layout: article
+layout: post
 title: "MTG Powercreep"
-tags: MTG
-article_header:
-  type: cover
-  theme: dark
-  image: 
-    src: /assets/images/covers/mtg-powercreep-cover.jpg
-  background-image: /assets/images/covers/chess-analysis-cover.jpg
-#   background_color: '#203028'
+categories: MTG
+permalink: /mtg/powercreep
 ---
 
 Magic: The Gathering has been around since 1993, making it the first collectible card game ever created. This article explores how it's cards got progressively stronger over the years.
