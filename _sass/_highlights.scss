@@ -4,19 +4,22 @@
   padding: 7px 7px 7px 10px;
   overflow: auto;
   font-size: 90%;
+  border-radius: 25px;
 }
 
 code {
   font-family:'Bitstream Vera Sans Mono','Courier', monospace;
   color: #d8d8d8;
+  
 }
 
 .highlighter-rouge { 
   background-color: #FAFAFA; 
   color: #FF554A; 
+  
 }
 
-.highlight .c { color: #586E75 } /* Comment */
+.highlight .c { color: #93c121 } /* Comment */
 .highlight .err { color: #93A1A1 } /* Error */
 .highlight .g { color: #93A1A1 } /* Generic */
 .highlight .k { color: #859900 } /* Keyword */
