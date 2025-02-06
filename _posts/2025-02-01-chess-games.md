@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Does spending more time on a move increase its quality? Analyzing 200.000 online chess games
+title: Does spending more time on a chess move increase its quality? Analyzing 200.000 online games
 categories: Chess
 permalink: /chess/analyzing-online-games
 cover: /images/covers/chess-games-cover.jpg
