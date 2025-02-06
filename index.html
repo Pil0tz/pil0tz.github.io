@@ -9,7 +9,8 @@ layout: default
     <article class="post">
       <a href="{{ site.baseurl }}{{ post.url }}">
         <div class="post-content">
-          <img class='cover-image' src="{{- post.cover | relative_url -}}" alt="{{ post.cover }}" />
+          <img class='cover-image blogroll' src="{{- post.cover | relative_url -}}" alt="{{ post.cover }}" />
+      </a>
           <div>
             <h1>{{ post.title }}</h1>
             <p class="post_date">{{ post.date | date: "%B %e, %Y" }}</p>
@@ -19,7 +20,6 @@ layout: default
             <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
           </div>
         </div>
-      </a>
     </article>
     {% endunless %}
   {% endfor %}

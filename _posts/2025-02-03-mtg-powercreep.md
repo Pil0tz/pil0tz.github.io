@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "MTG Powercreep"
+title: "Powercreep: Analyzing the gradual increase in card power level of Magic: The Gathering cards"
 categories: MTG
 permalink: /mtg/powercreep
 cover: /images/covers/mtg-powercreep-cover.jpg

@@ -7,7 +7,6 @@
 
 @import "reset";
 @import "variables";
-@import "custom";
 // Syntax highlighting @import is at the bottom of this file
 
 // /**************/
@@ -366,6 +365,7 @@ nav {
 //
 
 .posts > .post {
+  padding-top: 2em;
   padding-bottom: 2em;
   border-bottom: 1px solid $lightGray;
 }
@@ -375,6 +375,7 @@ nav {
   border-bottom: none;
 }
 
+// post settings
 .post {
   blockquote {
     margin: 1.8em .8em;
@@ -1147,3 +1148,4 @@ Modules - reusable parts of our design
 @import "highlights";
 @import "darcula";
 @import "svg-icons";
+@import "custom";
