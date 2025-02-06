@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Analyzing 200.000 Online Chess Games
+title: Does spending more time on a move increase its quality? Analyzing 200.000 online chess games
 categories: Chess
 permalink: /chess/analyzing-online-games
 cover: /images/covers/chess-games-cover.jpg

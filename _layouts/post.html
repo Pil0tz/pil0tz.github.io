@@ -9,7 +9,7 @@ layout: default
     {% if page.cover %}
         <img class='cover-image' src="{{- page.cover | relative_url -}}" alt="{{ page.cover }}" />
     {% else %}
-        <img class='cover-image' src="/images/covers/default-cover.jpg" alt="Cover image not found" />
+        <img class='cover-image post-cover' src="/images/covers/default-cover.jpg" alt="Cover image not found" />
     {% endif %}
     <p class="author_title">{{site.author}}  ·  {{ page.date | date: "%B %e, %Y" }}</p>
     {% if page.last_modified_at %}
