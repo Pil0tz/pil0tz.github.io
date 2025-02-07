@@ -6,14 +6,13 @@ layout: default
 <div class="posts">
   {% for post in paginator.posts %}
     {% unless post.exclude %}
-    <article class="post">
+    <article class="post blogroll">
       <a href="{{ site.baseurl }}{{ post.url }}">
           <img class='cover-image blogroll' src="{{- post.cover | relative_url -}}" alt="{{ post.cover }}" />
+          <div class="post-description">
+            <h1 class="post-title">{{ post.title }}</h1>
       </a>
-          <div>
-            <h1>{{ post.title }}</h1>
-      </a>
-            <div class="excerpt">
+            <div class="post-excerpt">
               {{ post.excerpt }}
             </div>
             <div class="post-meta">

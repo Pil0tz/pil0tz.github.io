@@ -74,7 +74,7 @@ kramdown:
   # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
   syntax_highlighter: rouge
   syntax_highlighter_opts:
-    theme: base16.monokai.dark
+    formatter: base16.monokai.dark
     # Use existing pygments syntax highlighting css
     css_class: 'highlight'
 
@@ -88,6 +88,7 @@ plugins:
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
   - jekyll-seo-tag
   - jekyll-paginate
+  
 
 include: ['_pages']
 

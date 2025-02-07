@@ -7,7 +7,7 @@ layout: default
 
   <div>
     {% if page.cover %}
-        <img class='cover-image' src="{{- page.cover | relative_url -}}" alt="{{ page.cover }}" />
+        <img class='cover-image post-cover' src="{{- page.cover | relative_url -}}" alt="{{ page.cover }}" />
     {% else %}
         <img class='cover-image post-cover' src="/images/covers/default-cover.jpg" alt="Cover image not found" />
     {% endif %}
