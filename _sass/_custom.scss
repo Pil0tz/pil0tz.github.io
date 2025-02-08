@@ -7,7 +7,7 @@
 .cover-image.blogroll {
     object-fit: cover;
     width: 25%;
-    height: 25%;
+    aspect-ratio: 1/1;
     float: left;
     // margin-right: 1.2em;
 }
