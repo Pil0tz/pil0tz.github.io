@@ -11,6 +11,11 @@
     float: left;
     margin-right: 1.2em;
     min-height: 18vh;
+    @include mobile {
+        width: 100%;
+        float: none;
+        margin-right: 0;
+    }
 }
 .cover-image.post-cover {
     width: 100%;
