@@ -26,26 +26,31 @@ article.post.detailed {
     margin: 0px;
 }
 
-
+article.post.detailed h1.post-title {
+    font-style: italic;
+    // font-size: 30px;
+    // margin-left: 10px;
+}
 
 // BLOGROLL
-.posts > article.post.blogroll {
-    // margin-top: 2em;
-    // margin-bottom: 2em;
-    // min-height: 300px;
-    border-bottom: 1px solid $lightGray;
-    overflow: hidden;
-  }
+// .posts > article.post.blogroll {
+//     // margin-top: 2em;
+//     // margin-bottom: 2em;
+//     // min-height: 300px;
+//     // border-bottom: 1px solid $lightGray;
+//     overflow: hidden;
+//   }
 
-.post.blogroll > .post-description {
+.post.blogroll > div.post-description {
     margin-left: 28%;
     margin-top: -30px;
 }
 
-.post.blogroll > h1.post-title {
-    font-style: bold;
-    font-size: 80px;
-}
+// .post.blogroll h1.post-title {
+//     font-style: italic;
+//     font-size: 80px;
+//     margin-left: 10px;
+// }
 
 .post.blogroll > .post-excerpt {
     text-emphasis-color: $gray;
@@ -65,9 +70,9 @@ article.post.blogroll > .read-more {
 
 }
 
-.post-meta .post_date {
-    // margin-left: auto; /* Ensure the date is aligned to the right */
-}
+// .post-meta .post_date {
+//     // margin-left: auto; /* Ensure the date is aligned to the right */
+// }
 
 .masthead {
     border-bottom: 5px solid $lightGray;
