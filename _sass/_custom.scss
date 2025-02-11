@@ -1,79 +1,69 @@
 // COVER IMAGES
+
 .cover-image {
     border-radius: 20px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-
-.cover-image.blogroll {
     object-fit: cover;
-    width: 25%;
+}
+.cover-image.blogroll {
+    width: 20vh;
     aspect-ratio: 1/1;
     float: left;
     margin-right: 1.2em;
+    min-height: 18vh;
 }
-
 .cover-image.post-cover {
-    object-fit: cover;
     width: 100%;
-    height: 25vh;
-    // height: 500px;
+    height: 30vh;
 }    
 
-// BLOG POSTS
-
-article.post.detailed {
-    padding: 0px;
-    margin: 0px;
-}
-
-article.post.detailed h1.post-title {
-    font-style: italic;
-    // font-size: 30px;
-    // margin-left: 10px;
-}
 
 // BLOGROLL
-// .posts > article.post.blogroll {
-//     // margin-top: 2em;
-//     // margin-bottom: 2em;
-//     // min-height: 300px;
-//     // border-bottom: 1px solid $lightGray;
-//     overflow: hidden;
-//   }
-
-.post.blogroll > div.post-description {
+  
+.posts > article.post {    
+    padding: 1.5em;
+    margin: 2em 0.5em;
+    // border: 3px solid $lightGray;
+    border-radius: 25px;
+    background-color: #f3f3f3;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    min-height: 22vh;
+}
+.post-excerpt {
+    display: flex;
+    // padding-left: 30%;
+}
+.read-more {
+    text-transform: uppercase;
+    font-size: 15px;
+    // margin-left: 1.2em;
+}
+.post h1.post-title {
+    text-align: left;
+    margin: 0px;
+}
+.post-meta {
     margin-left: 28%;
-    margin-top: -30px;
-}
-
-// .post.blogroll h1.post-title {
-//     font-style: italic;
-//     font-size: 80px;
-//     margin-left: 10px;
-// }
-
-.post.blogroll > .post-excerpt {
-    text-emphasis-color: $gray;
-}
-
-.post.blogroll > .post-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // margin-left: 30%;
     // margin-top: 10px;
 }
 
-article.post.blogroll > .read-more {
-    text-transform: uppercase;
-    font-size: 15px;
 
-}
+// ARTICLES
 
-// .post-meta .post_date {
-//     // margin-left: auto; /* Ensure the date is aligned to the right */
+// article > h1.post-title {
+//     text-align: right;
 // }
+
+
+
+
+
+// NAVBAR
 
 .masthead {
     border-bottom: 5px solid $lightGray;
+    
 }
