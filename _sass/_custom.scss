@@ -38,7 +38,6 @@ $imageSize: 22vh;
 .posts > article.post {    
     padding: 1.5em;
     margin: 2em 0.5em;
-    // border: 3px solid $lightGray;
     border-radius: 25px;
     background-color: #f3f3f3;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
@@ -46,18 +45,22 @@ $imageSize: 22vh;
 }
 .post-description {
     margin-left: $imageSize;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
 
     h1.post-title {
         text-align: left;
         margin: 0;
     }
-    .post-excerpt {
-        display: flex;
-    }
+    // .post-excerpt {
+    // }
     .post-meta { // Date and Read More
-        margin-left: 1.2em;
+        // margin-left: 1.2em;
             @include mobile {margin:0}
         display: flex;
+        margin-top: auto;
         justify-content: space-between;
         align-items: center;
     }
