@@ -5,6 +5,8 @@
 
 
 // COVER IMAGES
+$imageSize: 25vh;
+
 
 .cover-image {
     border-radius: 20px;
@@ -12,11 +14,11 @@
     object-fit: cover;
 }
 .cover-image.blogroll {
-    width: 30vh;
+    width: $imageSize;
     aspect-ratio: 1/1;
     float: left;
     margin-right: 1.2em;
-    min-height: 18vh;
+    // min-height: 18vh;
 
     @include mobile {
         width: 100%;
@@ -40,21 +42,21 @@
     border-radius: 25px;
     background-color: #f3f3f3;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    min-height: 38vh;
+    min-height: $imageSize + 5vh;
 }
 .post-description {
-    margin-left: 30vh;
+    margin-left: $imageSize;
 
     h1.post-title {
         text-align: left;
-        margin: 0px;
+        margin: 0;
     }
     .post-excerpt {
         display: flex;
     }
     .post-meta { // Date and Read More
         margin-left: 1.2em;
-        @include mobile {margin:0}
+            @include mobile {margin:0}
         display: flex;
         justify-content: space-between;
         align-items: center;
