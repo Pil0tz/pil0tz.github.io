@@ -33,7 +33,7 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 1200px;
   padding: 0 10px;
   width: 100%;
 }
@@ -839,9 +839,9 @@ Modules - reusable parts of our design
     height: 60px;
     left: 50%;
     margin-left: -30px;
-    /* Force Hardware Acceleration in WebKit */
-    -webkit-transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
+    // /* Force Hardware Acceleration in WebKit */
+    // -webkit-transform: translateZ(0);
+    // -webkit-backface-visibility: hidden;
   }
   .cssanimations .cd-timeline-img.is-hidden {
     visibility: hidden;
