@@ -6,7 +6,7 @@
     object-fit: cover;
 }
 .cover-image.blogroll {
-    width: 20vh;
+    width: 30vh;
     aspect-ratio: 1/1;
     float: left;
     margin-right: 1.2em;
@@ -34,38 +34,30 @@
     border-radius: 25px;
     background-color: #f3f3f3;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    min-height: 22vh;
+    min-height: 38vh;
 }
-.post-excerpt {
-    display: flex;
-    // padding-left: 30%;
+.post-description {
+    margin-left: 30vh;
+
+    h1.post-title {
+        text-align: left;
+        margin: 0px;
+    }
+    .post-excerpt {
+        display: flex;
+    }
+    .post-meta { // Date and Read More
+        margin-left: 1.2em;
+        @include mobile {margin:0}
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    @include mobile {
+        margin-left: 0;
+        margin-top: 1em;
+    }
 }
-.read-more {
-    text-transform: uppercase;
-    font-size: 15px;
-    // margin-left: 1.2em;
-}
-.post h1.post-title {
-    text-align: left;
-    margin: 0px;
-}
-.post-meta {
-    margin-left: 28%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    // margin-top: 10px;
-}
-
-
-// ARTICLES
-
-// article > h1.post-title {
-//     text-align: right;
-// }
-
-
-
 
 
 // NAVBAR
