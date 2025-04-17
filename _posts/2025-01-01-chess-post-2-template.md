@@ -4,7 +4,7 @@ title: "Testing template"
 categories: Chess
 permalink: 
 cover: /images/covers/chess-2-cover.jpg
-exclude: false
+exclude: true
 ---
 ...<br>...p<br>...p<br>...p...<br>...p<br>...p<br>...p...<br>...p<br>...p<br>...p
 <!--more-->

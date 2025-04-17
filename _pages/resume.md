@@ -1,14 +1,14 @@
 ---
 layout: page
-title: Resume
+title: 
 permalink: /resume/
 ---
-<html class="resume_wrapper" itemscope itemtype="http://schema.org/Person">
+<html itemscope itemtype="http://schema.org/Person">
   <meta itemprop="telephone" content="{{ site.resume_contact_telephone }}"/>
   <meta itemprop="address" content="{{ site.resume_contact_address }}"/>
 
-  <header class="page-header"> 
-
+  <!-- <header class="page-header">  -->
+<div class="resume-wrapper">
   <!-- You can turn off the avatar in _config.yml by setting to false -->
   {% if site.resume_avatar == 'true' %}
   <img src="images/avatar.jpg" alt="my photo" class="avatar no-print" itemprop="image">
@@ -38,37 +38,15 @@ permalink: /resume/
   </div>
 
   {% if site.resume_looking_for_work == 'yes' %}
-  <a href="mailto:{{ site.resume_contact_email }}" class="contact-button no-print" itemprop="email">Contact me</a>
+  <a href="mailto:{{ site.resume_contact_email }}" class="contact-button no-print" itemprop="email">Send me an email</a>
   {% elsif site.resume_looking_for_work == 'no' %}
   <a class="contact-button not-looking no-print">I'm not looking for work right now.</a>
   {% else %}
   {% endif %}
 
-  </header>
 
-  {% if site.resume_section_experience %}
-  <!-- begin Experience -->
-  <section class="content-section">
-
-    <header class="section-header">
-      <h2>Experience</h2>
-    </header>
-
-    {% for job in site.data.experience %}
-    <div class="resume-item" itemscope itemprop="worksFor" itemtype="http://schema.org/Organization">
-      <h3 class="resume-item-title" itemprop="name">{{ job.company }}</h3>
-      <h4 class="resume-item-details" itemprop="description">{{ job.position }} &bull; {{ job.duration }}</h4>
-      <p class="resume-item-copy">{{ job.summary }}</p>
-    </div><!-- end of resume-item -->
-    {% endfor %}
-
-  </section>
-  <!-- end Experience -->
-  {% endif %}
-
-
-  {% if site.resume_section_education %}
   <!-- begin Education -->
+  {% if site.resume_section_education %}
   <section class="content-section">
     <header class="section-header">
       <h2>Education</h2>
@@ -85,18 +63,17 @@ permalink: /resume/
           <li>{{ award.award }}</li>
           {% endfor %}
         </ul>
+      </p>
 
-
-      <p class="resume-item-copy">{{ education.summary }}</p>
+      <p class="resume-item-copy">{{ education.summary | markdownify }}</p>
     </div>
     {% endfor %}
-  </section>
-  <!-- end Education -->
   {% endif %}
+  <!-- end Education -->
 
 
-  {% if site.resume_section_projects %}
   <!-- begin Projects -->
+  {% if site.resume_section_projects %}
   <section class="content-section">
     <header class="section-header">
       <h2>Projects</h2>
@@ -110,13 +87,13 @@ permalink: /resume/
       <p class="resume-item-copy">{{ project.description }}</p>
     </div>
     {% endfor %}
-
   </section>
-  <!-- end Projects -->
   {% endif %}
+  <!-- end Projects -->
 
-  {% if site.resume_section_skills %}
+
   <!-- begin Skills -->
+  {% if site.resume_section_skills %}
   <section class="content-section">
 
     <header class="section-header">
@@ -128,11 +105,32 @@ permalink: /resume/
       <p class="resume-item-copy">{{ skill.description }}</p>
     </div>
     {% endfor %}
+  </section>
+  {% endif %}
+  <!-- end Skills -->
+
+
+  <!-- begin Experience -->
+  {% if site.resume_section_experience %}
+  <section class="content-section">
+
+    <header class="section-header">
+      <h2>Experience</h2>
+    </header>
+
+    {% for job in site.data.experience %}
+    <div class="resume-item" itemscope itemprop="worksFor" itemtype="http://schema.org/Organization">
+      <h3 class="resume-item-title" itemprop="name">{{ job.company }}</h3>
+      <h4 class="resume-item-details" itemprop="description">{{ job.position }} &bull; {{ job.duration }}</h4>
+      <p class="resume-item-copy">{{ job.summary }}</p>
+    </div><!-- end of resume-item -->
+    {% endfor %}
 
   </section>
-  <!-- end Skills -->
   {% endif %}
+  <!-- end Experience -->
 
+  
   {% if site.resume_section_recognition %}
   <!-- begin Recognition -->
   <section class="content-section">
@@ -228,11 +226,3 @@ permalink: /resume/
   </section>
   <!-- end Print Social Links -->
   {% endif %}
-
-  <footer class="page-footer">
-    <p class="footer-line">Made by <a href="http://twitter.com/jglovier">@jglovier</a>. Fork me on <a href="https://github.com/jglovier/resume-template">GitHub</a>.</p>
-    <p class="footer-line">If this is your live resume, you can modify or remove this part. ;-)</p>
-  </footer>
-
-</html>
-

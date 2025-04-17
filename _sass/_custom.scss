@@ -32,6 +32,9 @@ $imageSize: 22vh;
     height: 30vh;
 }    
 
+.temp-link {
+    text-align: center;
+}
 
 // BLOGROLL
   
@@ -39,7 +42,7 @@ $imageSize: 22vh;
     padding: 1.5em;
     margin: 2em 0.5em;
     border-radius: 25px;
-    background-color: #f3f3f3;
+    background-color: #f7f7f7;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     min-height: $imageSize + 5vh;
 }

@@ -1,13 +1,23 @@
 # Degree
-- degree: Bachelor of Arts, Human Rights
-  uni: Yale University
-  year: 2004 &mdash; 2008
-  awards:
-    - award: Summa Cumme Laude graduate
-  summary: If you had any meaningful roles at college, feel free to write about them here
+- degree: Bachelor of Science, Psychology
+  uni: Tilburg University
+  year: 2021 &mdash; Present
+  award: Major in Clinical Psychology, minor in Data Science
+  summary: | 
+    Currently finishing up my thesis about the influence of feedback seeking behaviours on depressive symptoms. 
+    The curriculum included courses on _research methodology_, *statistical analyses* and *academic writing*. 
+    I dedicated my minor to programming in *Python*, *machine learning* and *database systems*, and took additional courses on *data structures* and *data analysis*. 
+    As for extracurriculars, I organized events for the study association and took part in numerous symposia from <a href="https://www.tilburguniversity.edu/campus/studium-generale" target="_blank">Studium Generale</a>, 
+    where I learned about the latest developments in psychology and related fields.
 
-- degree: High School Diploma
-  uni: Springfield High School
-  year: 2004
-  award: Most likely to succeed
-  summary: You can choose to have either a single or multiple awards
+- degree: Propaedeutics, Applied Psychology
+  uni: Fontys Eindhoven
+  year: 2020 &mdash; 2021
+  
+  summary: The program that solidified my love for Psychology and the human mind. Very hands-on and group-work focused, allowing for tons of practice in communication, self-reflection and teamwork. Also graduated during COVID lockdowns, so I learned to get used to and thrive in an online working environment.
+
+- degree: High School Diploma (HAVO)
+  uni: Tilburg School voor VAVO
+  year: 2020
+  # award: Most likely to succeed
+  summary: Completed an accelerated adult high school program, taking two years of classes in one year. Graduated during the COVID lockdowns.

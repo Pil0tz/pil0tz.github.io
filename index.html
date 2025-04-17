@@ -4,6 +4,12 @@ layout: default
 
 <!-- This is where we change what the posts show up like on the home page -->
 <div class="posts">
+  <!-- TEMPORARY BANNER UNTIL PROJECTS ARE FINISHED -->
+  <h1>Upcoming projects</h1>
+  <p class=temp-link>I'm still working hard to make these projects a reality. In the meanwhile, <a href="/resume">check out my resume!</a></p>
+
+
+
   {% for post in paginator.posts %}
     {% unless post.exclude %}
     <article class="post blogroll">
@@ -19,7 +25,8 @@ layout: default
             <div class="post-excerpt"> {{ post.excerpt }}</div>
             <div class="post-meta">
               <a class="read-more" href="{{ site.baseurl }}{{ post.url }}">Read More</a>
-              <p class="post_date">{{ post.date | date: "%B %e, %Y" }}</p>
+              <!-- <p class="post_date">{{ post.date | date: "%B %e, %Y" }}</p> -->
+              <p class="post_date">Coming soon!</p>
             </div>
           </div>
     </article>
