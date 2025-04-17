@@ -3,6 +3,7 @@
   uni: Tilburg University
   year: 2021 &mdash; Present
   award: Major in Clinical Psychology, minor in Data Science
+  url: "https://www.tilburguniversity.edu/education/bachelors-programs/psychology"
   summary: | 
     Currently finishing up my thesis about the influence of feedback seeking behaviours on depressive symptoms. 
     The curriculum included courses on _research methodology_, *statistical analyses* and *academic writing*. 
@@ -13,11 +14,11 @@
 - degree: Propaedeutics, Applied Psychology
   uni: Fontys Eindhoven
   year: 2020 &mdash; 2021
-  
-  summary: The program that solidified my love for Psychology and the human mind. Very hands-on and group-work focused, allowing for tons of practice in communication, self-reflection and teamwork. Also graduated during COVID lockdowns, so I learned to get used to and thrive in an online working environment.
+  url: "https://www.fontys.nl/Studeren/Opleidingen/Toegepaste-Psychologie-voltijd.htm"
+  summary: The program that solidified my love for psychology and the human mind. Very hands-on and group-work focused, allowing for tons of practice in communication, self-reflection and teamwork. Also graduated during COVID lockdowns, so I learned to get used to and thrive in an online working environment.
 
 - degree: High School Diploma (HAVO)
   uni: Tilburg School voor VAVO
   year: 2020
-  # award: Most likely to succeed
+  url: "https://www.yonder.nl/opleidingen/detail/havo"
   summary: Completed an accelerated adult high school program, taking two years of classes in one year. Graduated during the COVID lockdowns.
