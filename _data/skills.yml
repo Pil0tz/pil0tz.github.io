@@ -6,10 +6,23 @@
 
 - skill: Listening
   description: | 
-    Whether it's a client in a (mock) psychological intake interview, a potential customer looking for the best deal on a product, or discussing issues with my family, communication is key.
+    Whether it's a client in a (mock) psychological intake interview, a potential customer looking for the best deal on a product, or discussing issues with my family, listening is key.
     Getting to the core of what someone is really asking, instead of making assumptions about what you think they're saying is one of the most valuable skills that I pride myself on.
-  
+
 - skill: Data Analysis in Python
   description: | 
     I've been using Pandas, statsmodels and many more for data manipulation and cleaning, along with Seaborn, Matplotlib, Plotly and more for visualization. 
     With these packages I make Jupyter Notebooks about both my personal interests and important issues, which will be shared on this website.
+
+- skill: SQL
+  description: | 
+    Data can't be analyzed if it can't be accessed. That's why one of the first tools I learned when starting my transition to analytics was SQL.
+    I've since completed multiple certifications using SQL and designed database schemas and implementations for multiple university projects.
+
+- skill: Statistics
+  description: | 
+    # Studying Psychology has developed many of my soft skills, which are invaluable to me now. 
+    # But the most cherished skill I developed was the ability to see the world through a statistical lens.
+    Before university I never liked math, and believed I would never be good at it.
+    But statistics gave me a concrete reason to use math; to make inferences about the world with more certainty.
+    
