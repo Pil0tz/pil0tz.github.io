@@ -3,9 +3,21 @@
     // TODO: cut off the excerpt after x amount of lines (4?)
     // TODO: implement multiple language support (https://github.com/kurtsson/jekyll-multiple-languages-plugin)
 
+// HOME BANNER
+.banner {
+    #banner-image {
+        max-height: 200px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .temp-link {
+        text-align: center;
+    }
+}
+
 
 // COVER IMAGES
-
 $imageSize: 22vh;
 
 .cover-image {
@@ -31,10 +43,6 @@ $imageSize: 22vh;
     width: 100%;
     height: 30vh;
 }    
-
-.temp-link {
-    text-align: center;
-}
 
 // BLOGROLL
   
@@ -74,9 +82,77 @@ $imageSize: 22vh;
 }
 
 
-// NAVBAR
+// DROPDOWN MENUS
+// details {
+//     margin: 1em 0;
+//     padding: 0;
+//     border: 1px solid #ddd; // Subtle border for the dropdown
+//     border-radius: 5px;
+//     background-color: #ffffff; // Clean white background for the dropdown
+//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+//     overflow: hidden; // Ensures content stays within the border
+//   }
+// details > summary {
+//     display: inline-block;
+//     padding: 0.5em;
+//     background-color: #af6565;
+//     border-radius: 1vh;
+//     box-shadow: 1px 1px 2px #bbbbbb;
+//     cursor: pointer;
+//     align-items: center;
+// }
+details > summary {
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    padding: 0em 1em;
+    margin-bottom: 1em;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    background-color: $white;
+    border: 1px solid #ddd;
+    border-radius: 1vh;
+    cursor: pointer;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
 
-.masthead {
-    border-bottom: 5px solid $lightGray;
-    
+details > summary:hover {
+    background-color: $darkerGray;
+    color: $white;
+}
+
+details > *:not(summary) {
+    // padding: 1em;
+    font-size: 0.95rem;
+    color: $white;
+}
+
+.details-content {
+    font-size: 1rem;
+    align-items: center;
+}
+.close-details {
+    display: inline-block;
+    padding: 0.8em 1.2em;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+    background-color: #f9f9f9; 
+    border: 1px solid #ddd;
+    border-radius: 1vh;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+  
+  .close-details:hover {
+    background-color: #f0f0f0; // Slightly darker background on hover
+    color: #000; // Darker text on hover
+  }
+
+
+// POST CONTENT
+.entry > hr:first-child {
+    margin-bottom: 5vh;
 }
