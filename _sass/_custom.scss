@@ -83,24 +83,6 @@ $imageSize: 22vh;
 
 
 // DROPDOWN MENUS
-// details {
-//     margin: 1em 0;
-//     padding: 0;
-//     border: 1px solid #ddd; // Subtle border for the dropdown
-//     border-radius: 5px;
-//     background-color: #ffffff; // Clean white background for the dropdown
-//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
-//     overflow: hidden; // Ensures content stays within the border
-//   }
-// details > summary {
-//     display: inline-block;
-//     padding: 0.5em;
-//     background-color: #af6565;
-//     border-radius: 1vh;
-//     box-shadow: 1px 1px 2px #bbbbbb;
-//     cursor: pointer;
-//     align-items: center;
-// }
 details > summary {
     display: inline-block;
     align-items: center;
@@ -108,47 +90,61 @@ details > summary {
     justify-content: space-between;
     padding: 0em 1em;
     margin-bottom: 1em;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 500;
-    color: #333;
-    background-color: $white;
+    background-color: $darkPurple;
+    color: $lighterPurple;
     border: 1px solid #ddd;
     border-radius: 1vh;
     cursor: pointer;
-    transition: background-color 0.4s ease, color 0.4s ease;
+    transition: background-color .0.4s ease, color 0.4s ease;
+    // text-shadow: 1px 1px 2px $lightPurple;
 }
 
 details > summary:hover {
-    background-color: $darkerGray;
-    color: $white;
+    color: $darkPurple;
+    background-color: $lighterPurple;
 }
 
 details > *:not(summary) {
-    // padding: 1em;
-    font-size: 0.95rem;
-    color: $white;
+    padding: 0.7vh 0;
+
 }
 
 .details-content {
     font-size: 1rem;
     align-items: center;
 }
-.close-details {
+.close-details-button {
+    // display: inline-block;
+    // padding: 0.8em 1.2em;
+    // font-size: 1.1rem;
+    // font-weight: 500;
+    // color: $black;
+    // background-color: #f9f9f9; 
+    // border: 1px solid #ddd;
+    // border-radius: 1vh;
+    // cursor: pointer;
+    // transition: background-color 0.3s ease, color 0.3s ease;
     display: inline-block;
-    padding: 0.8em 1.2em;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    padding: 0em 1em;
+    margin-bottom: 1em;
     font-size: 1.1rem;
-    font-weight: 500;
-    color: #333;
-    background-color: #f9f9f9; 
+    font-weight: 500; 
+    background-color: $darkPurple;
+    color: $lighterPurple;
     border: 1px solid #ddd;
     border-radius: 1vh;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.4s ease, background-color 0.4s ease;
 }
   
-  .close-details:hover {
-    background-color: #f0f0f0; // Slightly darker background on hover
-    color: #000; // Darker text on hover
+  .close-details-button:hover {
+    color: $darkPurple;
+    background-color: $lighterPurple;
   }
 
 
@@ -156,3 +152,39 @@ details > *:not(summary) {
 .entry > hr:first-child {
     margin-bottom: 5vh;
 }
+
+table {
+    padding: 0; }
+    table tr {
+      border-top: 1px solid #cccccc;
+      background-color: white;
+      margin: 0;
+      padding: 0; }
+      table tr:nth-child(2n) {
+        background-color: #f8f8f8; }
+        table tr th {
+        font-weight: bold;
+        border: 1px solid #cccccc;
+        text-align: left;
+        margin: 0;
+        padding: 6px 13px; }
+      table tr td {
+        border: 1px solid #cccccc;
+        text-align: left;
+        margin: 0;
+        padding: 6px 13px; }
+      table tr th :first-child, table tr td :first-child {
+        margin-top: 0; }
+      table tr th :last-child, table tr td :last-child {
+  margin-bottom: 0; }
+
+.post.detailed blockquote {
+    //   margin: 1.8em .8em;
+    //   padding: 0.1em 1em;
+    //   font-style: italic;
+    color: $white;
+    border-left: 2vh solid $lightPurple;
+    border-radius: 1vh;
+    font-size: 1.2em;
+    background-color: $darkPurple;
+    }

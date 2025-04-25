@@ -1,0 +1,100 @@
+<details open>
+<summary>Show / hide the code
+</summary>
+  
+  ```python
+  # Extract the Eval_ply_x columns
+  eval_columns = [f'Eval_ply_{i}' for i in range(1, 151)]
+  df_eval = df_clean[eval_columns]
+  
+  # Extract the Clock_ply_x columns and convert to total seconds
+  clock_columns = [f'Clock_ply_{i}' for i in range(1, 151)]
+  df_time = df_clean[clock_columns].apply(pd.to_timedelta)
+  df_time = df_time.map(lambda x: x.total_seconds() if pd.notna(x) else x)
+  
+  # Combine both DataFrames and add some relevant columns
+  df_combined = pd.concat([df_eval, df_time], axis=1)
+  columns_to_add = ['Index', 'GameMode', 'Increment', 'IncrementCategory']
+  df_combined[columns_to_add] = df_clean[columns_to_add]
+  ```
+  
+  When the computer sees a _forced mate sequence_, it will give the number of moves until mate, with a hashtag in front of it. Later on in the limitations I will talk more about how this poses some problems for our analysis. Since there is no way to convert this into a numerical value without choosing an arbitrary number, our function will skip over moves that contain a forced mate. To do this, we convert these to `None` values, and then skip over those later on in the function.
+  
+  ```python
+  def eval_conversion(eval_value):
+      if pd.isnull(eval_value):
+          return None
+      eval_str = str(eval_value)
+      if '#' in eval_str:      
+          return None
+      try:                     
+          return float(eval_str)          
+      except (ValueError, TypeError):
+          return None
+  ```
+  
+  We need to loop over each game, and within each game over each move. The move data will be appended to a list at the end of each loop.
+  
+  ```python
+  all_moves = []
+  
+  for idx, row in df.iterrows():              
+      # Make sure we always have a move to compare to (+1 because range is non-inclusive)
+      for move_num in range(1, max_ply - 2 + 1):
+          # Determine the color to see if we need to multiply the evaluation by -1
+          color = 'white' if move_num % 2 == 1 else 'black'
+          # Column names for current and next move
+          curr_time_col = f'Clock_ply_{move_num}'
+          next_time_col = f'Clock_ply_{move_num + 2}'
+          curr_eval_col = f'Eval_ply_{move_num}'
+          next_eval_col = f'Eval_ply_{move_num + 2}'
+  ```
+  
+  We do all the necessary checks to see if all values are valid, before applying the eval_conversion function we wrote earlier.
+  
+  ```python
+  # Check if all columns exist
+  if not all(col in df.columns for col in 
+  [curr_time_col, next_time_col, curr_eval_col, next_eval_col]):
+      continue
+  # Convert evaluations to numeric (or None)
+  curr_eval = eval_conversion(row[curr_eval_col])
+  next_eval = eval_conversion(row[next_eval_col])
+  # Skip current move if either evaluation is None
+  if curr_eval is None or next_eval is None:
+      continue
+  # Check for valid clock times
+  if pd.isnull(row[curr_time_col]) or pd.isnull(row[next_time_col]):
+      continue
+  ```
+  Finally, we can calculate the time spent on each move, and the change in computer evaluation. The phase of the game the move was made in is converted, and then a dictionary with all the data for that move is made and appended to the move list.
+  ```python
+  # Calculate time spent and eval change
+  time_spent = row[curr_time_col] - row[next_time_col] + row['Increment']
+  eval_change = next_eval - curr_eval
+  # Determine rough phase of the game the move was made in
+  def get_game_phase(move_num):
+      if move_num <= 10:
+          return 'opening'
+      elif move_num <= 20:
+          return 'early_middle'
+      elif move_num <= 40:
+          return 'late_middle'
+      else:
+          return 'endgame'
+  game_phase = get_game_phase(move_num)
+  # Store move data
+  move_data = {
+      'game_id': idx,
+      'move_number': (move_num + 1) // 2,
+      'color': color,
+      'time_spent': time_spent,
+      'eval_change': round(eval_change if color == 'white' else -eval_change, 2),
+      'game_phase': game_phase,
+      'increment': row['Increment'],
+      'game_mode': row['GameMode']
+  }
+  # After processing each game, append the move data to the main list
+  all_moves.append(move_data)
+  ```
+  </details>

@@ -1,7 +1,8 @@
 // CODE HIGHLIGHTING CSS
 
 .highlight {
-  background-color: #1e1c3f;
+  background-color: $darkPurple;
+  // #1e1c3f;
   padding: 7px 7px 7px 10px;
   overflow: auto;
   font-size: 90%;
@@ -17,8 +18,8 @@ code {
 }
 
 .highlighter-rouge { 
-  background-color: #FAFAFA; 
-  color: #FF554A;
+  // background-color: #FAFAFA; 
+  color: #268BD2;
   
 }
 

@@ -72,7 +72,7 @@ h2 {
 	    vertical-align: middle;
 	    width: 46px;
 	    height: 10px;
-	    background: rgb(29, 183, 239);
+	    background: $lightPurple;
 	    margin: 0px 30px;
 	}
 }
@@ -180,11 +180,12 @@ span[data-pullquote]:before {
 }
 
 a {
-  color: $blue;
+  color: $lightPurple;
+  font-weight: 600;
   text-decoration: none;
 	cursor: pointer;
   &:hover, &:active {
-    color: $blue;
+    color: $lightPurple;
   }
 }
 
@@ -360,7 +361,7 @@ nav {
 
     @include mobile {
       margin: 0 10px;
-      color: $blue;
+      color: $lightPurple;
     }
   }
 }
@@ -388,12 +389,12 @@ nav {
 .post {
   blockquote {
     margin: 1.8em .8em;
-    border-left: 2px solid $gray;
+    border-left: 1vh solid $gray;
     padding: 0.1em 1em;
-    color: $gray;
+    color: $white;
     font-size: 22px;
     font-style: italic;
-    background-color: #ede1ff;
+    background-color: $lightPurple;
   }
 
   .you-may-like{
