@@ -67,8 +67,10 @@ for col_prefix in ['Eval_ply_', 'Move_ply_', 'Clock_ply_']:
     columns_to_drop = [f'{col_prefix}{i}' for i in range(151, 201)]
     df_clean = df_clean.drop(columns=columns_to_drop)
 ```
+
 ### Data cleaning results
-```
+
+```markdown
 Removed    17 Games with irregular Termination
 Removed 43253 Bullet & UltraBullet games
 Removed   310 Games with 2500 or higher ELO players
@@ -84,7 +86,6 @@ New shape: (152003, 478)
 <br>
 These relatively simple filters make the dataset more normalized and remove outliers on key features. 
 Now we can plot the descriptive stats again to see if things improved:
-
 
 <img src="\images\chess\EDA_after.png" title="EDA subgraphs" style="display: flex; max-width: 100%;"><br>
 
@@ -102,7 +103,8 @@ I've tried to explain my thought process as much as possible, but if you just wa
 
 {% include /code-blocks/chess/time_eval-func.html %}
 
-## Results 
+## Results
+
 Now that we have our DataFrame on a per move basis, a second round of data examination and cleaning begins. 
 First, let's look at the boxplots for evaluation change and time spent to check for any outliers. The scatterplot also helps show how the data is distributed.
 
@@ -112,8 +114,8 @@ First, let's look at the boxplots for evaluation change and time spent to check 
 There are some unexpected things happening here: 
 
 <u>Some moves seem to take <i>negative time</i> to make</u>, even after taking the increment into account. 
-While it could potentially be an error in the code, this is likely due to a feature on lichess where your opponent can give you extra time on your clock, 
-which will show up as negative time spent on that move. 
+While it could potentially be an error in the code, this is likely due to a feature on lichess where your opponent can give you extra time on your clock,
+which will show up as negative time spent on that move.
 Some of the extremely large time spent values can also be due to this feature, as it allows a player to have much more time on their clock than the format should allow. With some exceptions, most of the large time spent comes from classical games, which can last for hours, so that makes sense.
 
 This is also where we see a problem arise with the **interpretability of computer evaluations**. 
@@ -122,6 +124,7 @@ Similarly, when a position is really good but the computer can't find a sequence
 
 **Good to know:** chess evaluation is supposed to be mapped back to the value of the pieces. So if the evaluation is +9, this should roughly mean white is up the equivalent of a full queen.
 > **This leads to some questions about interpretability**:
+
 - If the evaluation is already +20 for your opponent, and your move takes it to +50, did the position get worse in human terms?
 - If the inverse happens, and you manage to 'only' be down the equivalent of two queens instead of four, did your chances to win really improve?
 
@@ -129,21 +132,20 @@ In other words, computer evaluation cannot be seen as a continuous scale on whic
 Comparison with the second best computer move would provide some insight into how critical finding a specific move is, but that isn't available in this dataset.
 For more analysis about the relationship between computer evaluation and winning chances, check out [this article](https://web.chessdigits.com/articles/when-should-you-resign) by the creator of the dataset.
 
-
 ## What's next?
+
 Originally, and perhaps naively, I was planning to just do regression and correlation analyses on the extracted data.
-But after delving into the results, it seems that it is very hard to obtain useful insights from straight up computer evaluation change. 
+But after delving into the results, it seems that it is very hard to obtain useful insights from straight up computer evaluation change.
 Its value and relevancy fluctuates too drastically based on how close to 0 it is.
 
-A more reasonable approach would be to turn evaluation changes into **categories**: 
+A more reasonable approach would be to turn evaluation changes into **categories**:
+
 - If a move brings the evaluation from around 0 to going drastically one way or the other, we call it a _blunder_
 - If a move changes the evaluation down from a completely winning advantage to just a favored one, we call it a _mistake_
 
-Analyzing data like this removes the scale problem of evaluations, and focuses on the question at hand; if spending more time leads to fewer *mistakes*.
-
+Analyzing data like this removes the scale problem of evaluations, and focuses on the question at hand; if spending more time leads to fewer _mistakes_.
 
 <br>
-
 
 ----
 For those of you that have read this post all the way through, thank you so much! Your attention and support means a lot to me.
