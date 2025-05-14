@@ -191,3 +191,120 @@ table {
         font-weight: 600;
     }
     }
+
+// Table of Contents
+// Flex container for article + TOC sidebar
+.content-with-toc {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.2rem; // reduced from 2rem
+  width: 100%;
+}
+
+// Main article area
+.main-article {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 80%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// TOC sidebar
+#toc {
+    width: 22vw;
+    min-width: 180px;
+    max-width: 320px;
+    margin: 0;
+    display: block;
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
+}
+
+// Responsive: stack on mobile
+@media (max-width: 900px) {
+  .content-with-toc {
+    flex-direction: column;
+  }
+  #toc {
+    width: 100%;
+    max-width: none;
+    position: static;
+    margin-bottom: 2rem;
+  }
+  .main-article {
+    max-width: 100%;
+  }
+}
+
+.toc__list:before {
+    content: "Table Of Contents";
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: $white;
+}
+
+.toc__list {
+    border-left: 2vh solid $lightPurple;
+    border-radius: 1vh;
+    background-color: $darkPurple;
+    color: $white;
+    line-height: 1.8rem;
+    padding: 0.7rem 0.8rem; // reduced padding
+    font-weight: 600;
+    list-style: none;
+    counter-reset: toc-counter;
+}
+
+.toc__list > li {
+    position: relative;
+    padding-left: 2.2em;
+    margin-bottom: 0.5em;
+    list-style: none;
+    counter-increment: toc-counter;
+}
+
+.toc__list > li:before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    color: $lightPurple;
+    font-size: 1.1em;
+    top: 0.1em;
+}
+
+.toc__sublist {
+    list-style: none;
+    padding-left: 1.5em;
+}
+
+.toc__sublist li {
+    position: relative;
+    padding-left: 1.5em;
+    margin-bottom: 0.3em;
+}
+
+.toc__sublist li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: $lightPurple;
+    font-size: 1em;
+    top: 0.1em;
+}
+
+.toc-h2:first-child {
+    margin-top: 1rem;
+}
+
+#toc a {
+    color: $white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#toc a:hover {
+    color: $lightPurple;
+}

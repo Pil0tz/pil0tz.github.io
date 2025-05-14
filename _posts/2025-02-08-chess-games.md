@@ -6,6 +6,7 @@ permalink: /chess/analyzing-online-games
 cover: /images/covers/chess-games-cover.jpg
 exclude: false
 upcoming: false
+toc: true
 ---
 Chess is as much about finding the best move as it is about managing your available time, but does going 'into the tank' actually result in a better move? In this article I try to make sense of hundreds of thousands of moves, and learn a thing or two about continuous variables in the process.
 
@@ -142,12 +143,16 @@ But after delving into the results, it seems that it is very hard to obtain usef
 Its value and relevancy fluctuates too drastically based on how close to 0 it is.
 
 A more reasonable approach would be to turn evaluation changes into **categories**:
+Analyzing data like this removes the scale problem of evaluations, and focuses on the question at hand; if spending more time leads to fewer _mistakes_.
 
-- If a move brings the evaluation from around 0 to going drastically one way or the other, we call it a _blunder_
-- If a move changes the evaluation down from a completely winning advantage to just a favored one, we call it a _mistake_
+To address this, we can categorize evaluation changes into three main types:
 
-Analzing data like this removes the scale problem of evaluations, and focuses on the question at hand; if spending more time leads to fewer _mistakes_.
+- **Blunder:** A move that drastically worsens the evaluation, turning a balanced or winning position into a losing one.
+- **Mistake:** A move that worsens the evaluation, but not as severely as a blunder, reducing a winning advantage to a smaller one.
+- **Inaccuracy:** A move that slightly worsens the evaluation, but doesn't change the overall assessment of the position.
 
+By grouping moves this way, we can analyze whether spending more time reduces the frequency of blunders and mistakes, rather than focusing on raw evaluation numbers.
+This approach aligns better with how chess players and coaches assess move quality in practical terms.
 <br>
 
 ----
