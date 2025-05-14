@@ -181,10 +181,13 @@ table {
 .post.detailed blockquote {
     //   margin: 1.8em .8em;
     //   padding: 0.1em 1em;
-    //   font-style: italic;
+    font-style: normal;
     color: $white;
     border-left: 2vh solid $lightPurple;
     border-radius: 1vh;
     font-size: 1.2em;
     background-color: $darkPurple;
+    strong, b {
+        font-weight: 600;
+    }
     }

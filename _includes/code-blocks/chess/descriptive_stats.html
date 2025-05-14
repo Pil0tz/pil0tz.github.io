@@ -107,7 +107,13 @@ def display_distribution_statistics(df, file_name=None):
     plt.show()
 ```
 
-<button class="close-details-button" onclick="this.closest('details').removeAttribute('open')">Click to close the code block</button>
+<button class="close-details-button" onclick="
+  const details = this.closest('details');
+  details.removeAttribute('open');
+  details.scrollIntoView({ behavior: 'instant', block: 'center' });">
+  
+  Click to close the code block
+</button>
 </div>
 
 </details>

@@ -5,6 +5,7 @@ categories: MTG
 permalink: /mtg/powercreep
 cover: /images/covers/mtg-powercreep-cover.jpg
 exclude: false
+upcoming: true
 ---
 
 Magic: The Gathering has been around since 1993, making it the first collectible card game ever created. This article explores how it's cards got progressively stronger over the years, in a process known as powercreep. I also look at some interesting scientific literature about the 'strength' of cards in CCG's.
