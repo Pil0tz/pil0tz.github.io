@@ -27,7 +27,7 @@ The dataset comes from [Chessdigits.com](https://web.chessdigits.com/data){:targ
 Both of these columns go up to 200 ply, but most games will have a lot of missing values towards the end of that range.
 The computer evaluation is based on the best move according to a chess playing computer like [Stockfish](https://www.chess.com/terms/stockfish-chess-engine){:target="_blank"}, and as we'll see later on, it's not always the perfect way to judge which player has the better or easier to play position.
 
-> When computer evaluations go below zero, this means *black has the better position*. If they are positive, then *white has the better position*.
+> When computer evaluations go below zero, this means black has the better position. If they are positive, then *white has the better position*.
 
 **Other important columns include:**
 
@@ -87,11 +87,13 @@ Remaining games: 152003 from 200000 (76.00%)
 Old shape: (200000, 628)
 New shape: (152003, 478)
 ```
-<br>
+
 These relatively simple filters make the dataset more normalized and remove outliers on key features. 
 Now we can plot the descriptive stats again to see if things improved:
 
-<img src="\images\chess\EDA_after.png" title="EDA subgraphs" style="display: flex; max-width: 100%;"><br>
+<br>
+<img src="\images\chess\EDA_after.png" title="EDA subgraphs" style="display: flex; max-width: 100%;">
+<br>
 
 Those graphs already look a lot cleaner. 
 Rating distribution skewness went from 0.24 to 0.14, and game length skewness from 1.17 to 0.68. This makes the distribution measurably more symmetrical.
@@ -109,10 +111,11 @@ I've tried to explain my thought process as much as possible, but if you just wa
 
 ## Results
 
-Now that we have our DataFrame on a per move basis, a second round of data examination and cleaning begins. 
+Now that we have our DataFrame on a per move basis, a second round of data examination and cleaning begins.
 First, let's look at the boxplots for evaluation change and time spent to check for any outliers. The scatterplot also helps show how the data is distributed.
 
-<img src="\images\chess\move_eval_boxplot.png" title="EDA subgraphs" style="display: flex; max-width: 100%;">
+<img src="\images\chess\move_eval_boxplot.png" title="EDA subgraphs" style="display: flex; max-width: 80%;">
+
 <img src="\images\chess\eval_time_scatter.png" title="EDA subgraphs" style="display: flex; max-width: 80%;">
 
 There are some unexpected things happening here:
