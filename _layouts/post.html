@@ -12,7 +12,8 @@ layout: default
       {% else %}
           <img class='cover-image post-cover' src="/images/covers/default-cover.jpg" alt="Cover image not found" />
       {% endif %}
-      <p class="author_title">{{site.author}}  ·  {{ page.date | date: "%B %e, %Y" }}</p>
+      <br><br>
+      <!-- <p class="author_title">{{site.author}}  ·  {{ page.date | date: "%B %e, %Y" }}</p> -->
       {% if page.last_modified_at %}
       <p class="author_title" datetime="{{ page.last_modified_at | date_to_xmlschema }}">(Updated: {{ page.last_modified_at | date: "%b %-d, %Y" }})</p>
       {% endif %}
@@ -28,6 +29,9 @@ layout: default
         {% endfor %}
       </div> -->
       <div class="entry">
+        <nav id="mobile-toc" class="toc-mobile">
+          {% toc %}
+        </nav>
         {{ content }}
       </div>
       <div>
@@ -40,7 +44,7 @@ layout: default
 
   {% include disqus.html %}
 </div>
-<nav id="toc">
+<nav class="toc-desktop">
   {% toc %}
 </nav>
   </div>

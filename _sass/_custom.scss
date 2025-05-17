@@ -16,13 +16,20 @@
     }
 }
 
+// SIZING
+
+.container {
+  // width: 70%;
+  max-width: 90%;
+  // padding: 0 5vw 0 10vw;
+}
 
 // COVER IMAGES
 $imageSize: 22vh;
 
 .cover-image {
-    border-radius: 20px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+border-radius: 20px;
+box-shadow: $DefaultBoxShadow;
     object-fit: cover;
 }
 .cover-image.blogroll {
@@ -41,7 +48,7 @@ $imageSize: 22vh;
 }
 .cover-image.post-cover {
     width: 100%;
-    height: 30vh;
+    height: 40vh;
 }    
 
 // BLOGROLL
@@ -64,6 +71,7 @@ $imageSize: 22vh;
     h1.post-title {
         text-align: left;
         margin: 0;
+        padding: 0;
     }
     // .post-excerpt {
     // }
@@ -116,21 +124,13 @@ details > *:not(summary) {
     align-items: center;
 }
 .close-details-button {
-    // display: inline-block;
-    // padding: 0.8em 1.2em;
+    padding: 0.8em 1.2em;
     // font-size: 1.1rem;
-    // font-weight: 500;
-    // color: $black;
-    // background-color: #f9f9f9; 
-    // border: 1px solid #ddd;
-    // border-radius: 1vh;
-    // cursor: pointer;
-    // transition: background-color 0.3s ease, color 0.3s ease;
+    border: 1px solid #ddd;
     display: inline-block;
     align-items: center;
     text-align: center;
     justify-content: space-between;
-    padding: 0em 1em;
     margin-bottom: 1em;
     font-size: 1.1rem;
     font-weight: 500; 
@@ -181,12 +181,13 @@ table {
 .post.detailed blockquote {
     //   margin: 1.8em .8em;
     //   padding: 0.1em 1em;
-    font-style: normal;
-    color: $white;
+    background-color: $darkPurple;
+    width: 90%;
     border-left: 1.5vh solid $lightPurple;
     border-radius: 1vh;
+    color: $white;
+    font-style: normal;
     font-size: 1.2em;
-    background-color: $darkPurple;
     strong, b {
         font-weight: 600;
     }
@@ -215,34 +216,46 @@ table {
   padding-right: 0;
 }
 
-// TOC sidebar
-#toc {
+// Desktop styles
+@media (min-width: ($MobileCutoff + 1)) {
+  .toc-mobile {
+    display: none; // Always hide on desktop
+  }
+  
+  .toc-desktop {
+    display: block;
     width: 22vw;
     min-width: 15vw;
     max-width: 22vw;
     margin: 0em 0em 0em 1em;
-    display: block;
     position: sticky;
     top: 2rem;
     align-self: flex-start;
+  }
 }
 
-// Responsive: stack on mobile
-@media (max-width: 900px) {
+// Mobile styles
+@media (max-width: $MobileCutoff) {
+  .toc-mobile {
+    display: block; // Show mobile TOC
+    width: 100%;
+    margin: 1rem 0 2rem 0;
+  }
+  
+  .toc-desktop {
+    display: none; // Hide desktop TOC
+  }
+  
   .content-with-toc {
     flex-direction: column;
   }
-  #toc {
-    width: 100%;
-    max-width: none;
-    position: static;
-    margin-bottom: 2rem;
-  }
+  
   .main-article {
     max-width: 100%;
   }
 }
 
+// General TOC style
 .toc__list:before {
     content: "Table Of Contents";
     font-weight: bold;
@@ -251,6 +264,8 @@ table {
 }
 
 .toc__list {
+    box-shadow: $DefaultBoxShadow;
+    // border: 0.5vh solid $lighterPurple;
     border-left: 1.5vh solid $lightPurple;
     border-radius: 1vh;
     background-color: $darkPurple;
@@ -277,7 +292,7 @@ table {
     position: absolute;
     left: 0.8em;
     // left: 0.1em; // TURNS IT INTO ARROWS INSTEAD OF DIAMONDS
-    color: $lightPurple;
+    color: $lighterPurple;
     font-size: 1.4em;
     width: 1.5em;
     display: inline-block;
@@ -301,14 +316,13 @@ table {
 .toc__sublist li:before {
     content: "◆";
     position: absolute;
-    color: $lightPurple;
+    color: $lighterPurple;
     font-size: 1.2em;
+    left: -0.1em;
     display: inline-block;
 }
 
-.toc-h2:first-child {
-    margin-top: 1rem;
-}
+.toc-h2:first-child {margin-top: 1rem;}
 
 #toc a {
     color: $white;
@@ -316,6 +330,4 @@ table {
     font-weight: 500;
 }
 
-#toc a:hover {
-    color: $lighterPurple;
-}
+#toc a:hover {color: $lighterPurple;}

@@ -14,7 +14,7 @@ Chess is as much about finding the best move as it is about managing your availa
 <!--more-->
 ## Dataset & Domain Understanding
 
-Analysis will be done using Python3.12. Specifically, the Pandas and NumPy packages for analysis and data cleaning, along with Matplotlib and Seaborn for visualizations.
+Analysis will be done using Python 3.12. Specifically, the Pandas and NumPy packages for analysis and data cleaning, along with Matplotlib and Seaborn for visualizations.
 These are the tools I started with when learning data analysis, although I'm very interested in trying out alternatives like [Polars](https://pola.rs/) or [Plotly](https://plotly.com/product-tour/), which I plan to write an article about in the near future.
 
 The dataset comes from [Chessdigits.com](https://web.chessdigits.com/data){:target="_blank"}, who mined and converted 200.000 online games. They were played on the [Lichess](https://lichess.org){:target="_blank"} website, the second most popular place to play chess on the internet, in 2019. Each row represents one game. The two most important columns for this analysis are:
@@ -31,7 +31,7 @@ The computer evaluation is based on the best move according to a chess playing c
 
 **Other important columns include:**
 
-- 
+- **Opening:** the common name for the first couple of moves made in the game
 - **\[White/Black\]Rating:** the [ELO Rating](https://www.chess.com/terms/elo-rating-chess) of each of the players. It is a  historically tried and true measure of their relative strength.
 - **TimeControl:** in the form **'N+K'**, where **N** is the number of minutes each player starts with, and **K** is their _increment_
 - **Event:** a categorical grouping of the time control, into _Ultrabullet, Bullet, Blitz, Rapid_ and _Classical_. 
@@ -157,6 +157,8 @@ To address this, we can categorize evaluation changes into three main types:
 By grouping moves this way, we can analyze whether spending more time reduces the frequency of blunders and mistakes, rather than focusing on raw evaluation numbers.
 This approach aligns better with how chess players and coaches assess move quality in practical terms.
 <br>
+
+<!-- ## Categorizing the Moves -->
 
 ----
 
