@@ -92,7 +92,6 @@ plugins:
   - jekyll-paginate-v2
   - jekyll-toc
   
-
 include: ['_pages']
 
 pagination:
