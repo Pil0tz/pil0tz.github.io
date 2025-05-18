@@ -32,7 +32,7 @@ The computer evaluation is based on the best move according to a chess playing c
 **Other important columns include:**
 
 - **Opening:** the common name for the first couple of moves made in the game
-- **\[White/Black\]Rating:** the [ELO Rating](https://www.chess.com/terms/elo-rating-chess) of each of the players. It is a  historically tried and true measure of their relative strength.
+- **\[White/Black\]Rating:** the [ELO Rating](https://www.chess.com/terms/elo-rating-chess) of each of the players. It is a historically tried and true measure of their relative strength.
 - **TimeControl:** in the form **'N+K'**, where **N** is the number of minutes each player starts with, and **K** is their _increment_
 - **Event:** a categorical grouping of the time control, into _Ultrabullet, Bullet, Blitz, Rapid_ and _Classical_. 
 
@@ -49,7 +49,7 @@ The first step in understanding the dataset is to calculate some descriptive sta
 From this, we see there's some anomalies that can be removed to get a clearer picture. Rules infractions and abandoned games can go, as well as games where the result seems inconclusive ('*' in the result column). I considered removing draws as well since they only comprise of a small amount of games but their inclusion doesn't hurt our results so I decided to leave them in. I also removed bullet and ultra bullet games since they are so short that no meaningful fluctuation in time spent can be observed.
 
 Increment has a lot of unusual values which are not commonly used. This is probably due to people creating custom game challenges with less used or obscure time controls. 
-We can remove the odd ones out to get a clearer picture of the s that are commonly found in online chess games.
+We can remove the odd ones out to get a clearer picture of the ones that are commonly found in online chess games.
 
 99% of games are a total of 75 moves or shorter, which indicates that we can remove the last 50 ply without losing much data, significantly speeding up the analysis, as well as reducing the skewness of those distributions. We cut off some games before their conclusion, but since we're analyzing on a per-move basis, this should pose too much of a problem .
 
@@ -80,7 +80,7 @@ Removed 43253 Bullet & UltraBullet games
 Removed   310 Games with 2500 or higher ELO players
 Removed  3503 Games with non-standard increments
 Removed  4417 Games with RatingDiff of 200 or more
-Removed columns for the last 50 ply columns
+Removed    50 Columns for the last ply
 
 Removed 47997 games in total
 Remaining games: 152003 from 200000 (76.00%)
