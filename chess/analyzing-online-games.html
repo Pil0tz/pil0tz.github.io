@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YKYB8YW119"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YKYB8YW119');
+      </script>
+
+
+    <title>Does spending more time on a chess move increase its quality? Analyzing 200k online games – Jens Korzilius – Aspiring Data Analyst</title>
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Does spending more time on a chess move increase its quality? Analyzing 200k online games" />
+<meta name="author" content="Jens Korzilius" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Chess is as much about finding the best move as it is about managing your available time, but does going ‘into the tank’ actually result in a better move? In this article I try to make sense of hundreds of thousands of moves, and learn a thing or two about continuous variables in the process." />
+<meta property="og:description" content="Chess is as much about finding the best move as it is about managing your available time, but does going ‘into the tank’ actually result in a better move? In this article I try to make sense of hundreds of thousands of moves, and learn a thing or two about continuous variables in the process." />
+<link rel="canonical" href="https://jenskorzilius.nl/chess/analyzing-online-games" />
+<meta property="og:url" content="https://jenskorzilius.nl/chess/analyzing-online-games" />
+<meta property="og:site_name" content="Jens Korzilius" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-02-08T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Does spending more time on a chess move increase its quality? Analyzing 200k online games" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jens Korzilius"},"dateModified":"2025-02-08T00:00:00+00:00","datePublished":"2025-02-08T00:00:00+00:00","description":"Chess is as much about finding the best move as it is about managing your available time, but does going ‘into the tank’ actually result in a better move? In this article I try to make sense of hundreds of thousands of moves, and learn a thing or two about continuous variables in the process.","headline":"Does spending more time on a chess move increase its quality? Analyzing 200k online games","mainEntityOfPage":{"@type":"WebPage","@id":"https://jenskorzilius.nl/chess/analyzing-online-games"},"url":"https://jenskorzilius.nl/chess/analyzing-online-games"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+
+<meta property="og:description" content="Chess is as much about finding the best move as it is about managing your available time, but does going ‘into the tank’ actually result in a better move? In this article I try to make sense of hundreds of thousands of moves, and learn a thing or two about continuous variables in the process.
+" />
+
+<meta name="author" content="Jens Korzilius" />
+
+
+<meta property="og:title" content="Does spending more time on a chess move increase its quality? Analyzing 200k online games" />
+<meta property="twitter:title" content="Does spending more time on a chess move increase its quality? Analyzing 200k online games" />
+
+
+
+<meta property="og:image" content="https://jenskorzilius.nl/images/profile-picture.jpg"/>
+<meta property="twitter:image" content="https://jenskorzilius.nl/images/profile-picture.jpg"/>
+
+
+    
+    <link rel="stylesheet" type="text/css" href="/assets/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="Jens Korzilius - Aspiring Data Analyst" href="/feed.xml" />
+    <link rel="canonical" href="https://jenskorzilius.nl/chess/analyzing-online-games" />
+    
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    
+  </head>
+  
+  <body>
+    
+<!-- Header -->
+    <div class="wrapper-container">
+      <div class="wrapper-masthead">
+        <div class="container">
+          <header class="masthead clearfix">
+              <!-- Site information -->
+            <a href="/" class="site-avatar"><img src="/images/profile-picture.jpg" alt="" /></a>
+            <div class="site-info">
+              <h1 class="site-name"><a href="/">Jens Korzilius</a></h1>
+              <p class="site-description">Aspiring Data Analyst</p> 
+            </div>
+              <!-- Search menu -->
+            <nav>
+              <a href="/">Portfolio</a>
+              <!-- <a href="/search">Search</a> -->
+              <!-- <a href="/about">About me</a> -->
+              <a href = "/resume">Resume</a>
+              <!-- <a href="/archive">Archive</a>  #TODO: add back once I have sufficient number of posts--> 
+            </nav>
+          </header>
+        </div>
+      </div>
+
+      
+<!-- Main content -->
+      <div class="wrapper-main">
+        <div id="main" role="main" class="container">
+          <article class="post detailed">
+  <h1 class="post-title">Does spending more time on a chess move increase its quality? Analyzing 200k online games</h1>
+  <div class="content-with-toc">
+    
+    <div class="main-article">
+      
+          <img class='cover-image post-cover' src="/images/covers/chess-games-cover.jpg" alt="/images/covers/chess-games-cover.jpg" />
+      
+      <br><br>
+      <!-- <p class="author_title">Jens Korzilius  ·  February  8, 2025</p> -->
+      
+      <!-- <div class="post-tags"> TODO: turn back on category tags once they're properly implemented in front page
+        
+        
+          <a href="/categories/#Chess">Chess</a>
+          
+        
+      </div> -->
+      <div class="entry">
+        <nav id="mobile-toc" class="toc-mobile">
+          <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#dataset--domain-understanding">Dataset &amp; Domain Understanding</a></li>
+<li class="toc-entry toc-h2"><a href="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
+<li class="toc-entry toc-h2"><a href="#data-cleaning">Data cleaning</a>
+<ul class="toc__sublist">
+<li class="toc-entry toc-h3"><a href="#data-cleaning-results">Data cleaning results</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#extracting-time-and-evaluation-difference">Extracting Time and Evaluation Difference</a></li>
+<li class="toc-entry toc-h2"><a href="#results">Results</a></li>
+<li class="toc-entry toc-h2"><a href="#whats-next">What’s next?</a></li>
+</ul>
+        </nav>
+        <p>Chess is as much about finding the best move as it is about managing your available time, but does going ‘into the tank’ actually result in a better move? In this article I try to make sense of hundreds of thousands of moves, and learn a thing or two about continuous variables in the process.</p>
+
+<hr />
+<!--more-->
+<h2 id="dataset--domain-understanding">Dataset &amp; Domain Understanding</h2>
+
+<p>Analysis will be done using Python 3.12. Specifically, the Pandas and NumPy packages for analysis and data cleaning, along with Matplotlib and Seaborn for visualizations.
+These are the tools I started with when learning data analysis, although I’m very interested in trying out alternatives like <a href="https://pola.rs/">Polars</a> or <a href="https://plotly.com/product-tour/">Plotly</a>, which I plan to write an article about in the near future.</p>
+
+<p>The dataset comes from <a href="https://web.chessdigits.com/data" target="_blank">Chessdigits.com</a>, who mined and converted 200.000 online games. They were played on the <a href="https://lichess.org" target="_blank">Lichess</a> website, the second most popular place to play chess on the internet, in 2019. Each row represents one game. The two most important columns for this analysis are:</p>
+
+<ul>
+  <li><strong>Eval_ply_x:</strong> the computer evaluation of the position <em>after</em> the last played move</li>
+  <li><strong>Clock_ply_x:</strong> the player’s remaining time <em>after</em> the last played move</li>
+</ul>
+
+<blockquote>
+  <p><em>‘ply’</em> in chess means half of a move: so when white starts, their move is ply 1, black’s response is ply 2, white’s next move is ply 3, and so on.</p>
+</blockquote>
+
+<p>Both of these columns go up to 200 ply, but most games will have a lot of missing values towards the end of that range.
+The computer evaluation is based on the best move according to a chess playing computer like <a href="https://www.chess.com/terms/stockfish-chess-engine" target="_blank">Stockfish</a>, and as we’ll see later on, it’s not always the perfect way to judge which player has the better or easier to play position.</p>
+
+<blockquote>
+  <p>When computer evaluations go below zero, this means black has the better position. If they are positive, then <em>white has the better position</em>.</p>
+</blockquote>
+
+<p><strong>Other important columns include:</strong></p>
+
+<ul>
+  <li><strong>Opening:</strong> the common name for the first couple of moves made in the game</li>
+  <li><strong>[White/Black]Rating:</strong> the <a href="https://www.chess.com/terms/elo-rating-chess">ELO Rating</a> of each of the players. It is a historically tried and true measure of their relative strength.</li>
+  <li><strong>TimeControl:</strong> in the form <strong>‘N+K’</strong>, where <strong>N</strong> is the number of minutes each player starts with, and <strong>K</strong> is their <em>increment</em></li>
+  <li><strong>Event:</strong> a categorical grouping of the time control, into <em>Ultrabullet, Bullet, Blitz, Rapid</em> and <em>Classical</em>.</li>
+</ul>
+
+<blockquote>
+  <p>Increment is the amount of time a player gets <strong>after</strong> making a move</p>
+</blockquote>
+
+<h2 id="exploratory-data-analysis">Exploratory Data Analysis</h2>
+
+<p>The first step in understanding the dataset is to calculate some descriptive statistics. Below are histograms of the most important features that describe the games, such as the rating of the players, the length of the game, and more. Originally the code block below contained 5 lines of brute-force ‘code’, where I wrote out the lists containing the rating ranges and labels manually after looking through the data, before realising that this approach kind of defeats the purpose of programming. So I wrote a function that will create the rating ranges before plotting, ensuring the graph will still look correct even after the data cleaning process. The result is a quite a couple of lines longer, and took more time to write, but is also a lot more reusable and taught me a lesson; a tradeoff I am more than willing to make.</p>
+
+<details>
+  <summary>
+    <p>Click here to see the code</p>
+  </summary>
+  <div class="details-content">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">get_rating_ranges</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">bin_size</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="c1"># Get min and max ratings amongs both colors
+</span>    <span class="n">min_rating</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">WhiteElo</span><span class="sh">'</span><span class="p">].</span><span class="nf">min</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">BlackElo</span><span class="sh">'</span><span class="p">].</span><span class="nf">min</span><span class="p">())</span>
+    <span class="n">max_rating</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">WhiteElo</span><span class="sh">'</span><span class="p">].</span><span class="nf">max</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">BlackElo</span><span class="sh">'</span><span class="p">].</span><span class="nf">max</span><span class="p">())</span>
+    
+    <span class="c1"># Round min down and max up to nearest bin_size
+</span>    <span class="n">min_rating</span> <span class="o">=</span> <span class="p">(</span><span class="n">min_rating</span> <span class="o">//</span> <span class="n">bin_size</span><span class="p">)</span> <span class="o">*</span> <span class="n">bin_size</span>
+    <span class="n">max_rating</span> <span class="o">=</span> <span class="p">((</span><span class="n">max_rating</span> <span class="o">//</span> <span class="n">bin_size</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">bin_size</span>
+    
+    <span class="c1"># Create bins
+</span>    <span class="n">rating_bins</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="n">min_rating</span><span class="p">,</span> <span class="n">max_rating</span> <span class="o">+</span> <span class="n">bin_size</span><span class="p">,</span> <span class="n">bin_size</span><span class="p">))</span>
+    
+    <span class="c1"># Create labels
+</span>    <span class="n">rating_labels</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">bin_start</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="n">bin_start</span> <span class="o">+</span> <span class="n">bin_size</span> <span class="o">-</span> <span class="mi">1</span><span class="si">}</span><span class="sh">'</span>\ 
+                    <span class="k">for</span> <span class="n">bin_start</span> <span class="ow">in</span> <span class="n">rating_bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">rating_labels</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">rating_bins</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s">+</span><span class="sh">'</span>  <span class="c1"># Indicate the last bin's upper bound
+</span>    
+    <span class="c1"># Create rating ranges
+</span>    <span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">WhiteRatingRange</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">cut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">WhiteElo</span><span class="sh">'</span><span class="p">],</span> 
+                                   <span class="n">bins</span><span class="o">=</span><span class="n">rating_bins</span><span class="p">,</span> 
+                                   <span class="n">labels</span><span class="o">=</span><span class="n">rating_labels</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">BlackRatingRange</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">cut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">BlackElo</span><span class="sh">'</span><span class="p">],</span> 
+                                   <span class="n">bins</span><span class="o">=</span><span class="n">rating_bins</span><span class="p">,</span> 
+                                   <span class="n">labels</span><span class="o">=</span><span class="n">rating_labels</span><span class="p">)</span>
+    
+    <span class="c1"># Combine ranges
+</span>    <span class="n">combined_rating_range</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">concat</span><span class="p">([</span><span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">WhiteRatingRange</span><span class="sh">'</span><span class="p">],</span> 
+                                     <span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">BlackRatingRange</span><span class="sh">'</span><span class="p">]],</span> 
+                                    <span class="n">ignore_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">rating_labels</span><span class="p">,</span> <span class="n">combined_rating_range</span>
+</code></pre></div>    </div>
+
+    <p>Feeling good about this refactor, I decided to write a similar function for the game length. 
+  The time control and increment will only be added to the dataframe once and thus don’t need to be included in a function.</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">GameMode</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">Event</span><span class="sh">'</span><span class="p">].</span><span class="nb">str</span><span class="p">.</span><span class="nf">split</span><span class="p">().</span><span class="nb">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">Increment</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">TimeControl</span><span class="sh">'</span><span class="p">].</span><span class="nb">str</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">+</span><span class="sh">'</span><span class="p">).</span><span class="nb">str</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nf">astype</span><span class="p">(</span><span class="sh">'</span><span class="s">int</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">IncrementCategory</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">Increment</span><span class="sh">'</span><span class="p">].</span><span class="nf">astype</span><span class="p">(</span><span class="sh">'</span><span class="s">category</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_game_length</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">move_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="p">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span><span class="sh">'</span><span class="s">Move_ply_</span><span class="sh">'</span><span class="p">)]</span>
+    <span class="n">game_length_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="sh">'</span><span class="s">Index</span><span class="sh">'</span><span class="p">]].</span><span class="nf">copy</span><span class="p">()</span>
+    <span class="n">game_length_df</span><span class="p">[</span><span class="sh">'</span><span class="s">game_length</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">pd</span><span class="p">.</span><span class="nc">Index</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">move_columns</span><span class="p">].</span><span class="nf">isna</span><span class="p">().</span><span class="nf">idxmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> \
+    <span class="p">.</span><span class="nb">str</span><span class="p">.</span><span class="nf">extract</span><span class="p">(</span><span class="sh">'</span><span class="s">(\d+)</span><span class="sh">'</span><span class="p">).</span><span class="nf">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">).</span><span class="nf">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">game_length_df</span>
+</code></pre></div>    </div>
+    <p>Finally, I added a function to plot the different histograms into one plot.</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">display_distribution_statistics</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="c1"># Set the plot aesthetics
+</span>    <span class="n">sns</span><span class="p">.</span><span class="nf">set_style</span><span class="p">(</span><span class="sh">'</span><span class="s">darkgrid</span><span class="sh">'</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="n">matplotlib</span> <span class="k">as</span> <span class="n">mpl</span>
+    <span class="n">mpl</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="sh">'</span><span class="s">font.family</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="sh">'</span><span class="s">DejaVu Sans</span><span class="sh">'</span>
+    <span class="c1"># Run all data creation functions
+</span>    <span class="n">rating_labels</span><span class="p">,</span> <span class="n">combined_rating_range</span> <span class="o">=</span> <span class="nf">get_rating_ranges</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">bin_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">game_length_df</span> <span class="o">=</span> <span class="nf">get_game_length</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="c1"># Create the plot
+</span>    <span class="n">fig</span><span class="p">,</span> <span class="p">((</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">),</span> <span class="p">(</span><span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">),</span> <span class="p">(</span><span class="n">ax5</span><span class="p">,</span> <span class="n">ax6</span><span class="p">))</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
+    <span class="n">fig</span><span class="p">.</span><span class="nf">suptitle</span><span class="p">(</span><span class="sh">"</span><span class="s">Descriptive statistics</span><span class="sh">"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span> <span class="mi">25</span><span class="p">)</span>
+    <span class="n">sns</span><span class="p">.</span><span class="nf">set_style</span><span class="p">(</span><span class="sh">'</span><span class="s">darkgrid</span><span class="sh">'</span><span class="p">)</span>
+    <span class="c1"># Rating distribution (ax1)
+</span>    <span class="n">sns</span><span class="p">.</span><span class="nf">histplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">combined_rating_range</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">kde_kws</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">bw_adjust</span><span class="sh">'</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+    <span class="n">ax1</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">Rating</span><span class="sh">'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="p">.</span><span class="nf">set_xticklabels</span><span class="p">(</span><span class="n">rating_labels</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="sh">'</span><span class="s">right</span><span class="sh">'</span><span class="p">,</span> <span class="n">rotation_mode</span><span class="o">=</span><span class="sh">'</span><span class="s">anchor</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">''</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="p">.</span><span class="nf">set_axisbelow</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+    <span class="c1"># Game terminations (ax2)
+</span>    <span class="n">sns</span><span class="p">.</span><span class="nf">histplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="sh">'</span><span class="s">Termination</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">Game termination</span><span class="sh">'</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">''</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">''</span><span class="p">)</span>
+    <span class="c1"># Game length (ax3)
+</span>    <span class="n">sns</span><span class="p">.</span><span class="nf">histplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">game_length_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="sh">'</span><span class="s">game_length</span><span class="sh">'</span><span class="p">,</span> <span class="n">binwidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">Game length</span><span class="sh">'</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">''</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">''</span><span class="p">)</span>
+    <span class="c1"># Game mode (ax4)
+</span>    <span class="n">sns</span><span class="p">.</span><span class="nf">histplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax4</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="sh">'</span><span class="s">GameMode</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">Game mode</span><span class="sh">'</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">''</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">''</span><span class="p">)</span>
+    <span class="c1"># Game result (ax5)
+</span>    <span class="n">sns</span><span class="p">.</span><span class="nf">histplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax5</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="sh">'</span><span class="s">Result</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax5</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">Game result</span><span class="sh">'</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">ax5</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">''</span><span class="p">)</span>
+    <span class="n">ax5</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">''</span><span class="p">)</span>
+    <span class="c1"># Increment counts (ax6)
+</span>    <span class="n">increment_order</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">Increment</span><span class="sh">'</span><span class="p">].</span><span class="nf">value_counts</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">).</span><span class="n">index</span>
+    <span class="n">sns</span><span class="p">.</span><span class="nf">countplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax6</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="sh">'</span><span class="s">Increment</span><span class="sh">'</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">increment_order</span><span class="p">)</span>
+    <span class="n">ax6</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">Increment</span><span class="sh">'</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">ax6</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">''</span><span class="p">)</span>
+    <span class="n">ax6</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">''</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">(</span><span class="n">rect</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.96</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">file_name</span><span class="p">:</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="sh">'</span><span class="s">tight</span><span class="sh">'</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div>    </div>
+
+    <p><button class="close-details-button" onclick="   const details = this.closest('details');   details.removeAttribute('open');   details.scrollIntoView({ behavior: 'instant', block: 'center' });">Click to close the code block</button></p>
+  </div>
+
+</details>
+
+<p><img src="\images\chess\EDA_before.png" alt="EDA subgraphs" title="EDA subgraphs" style="width: 100%;" /><br /></p>
+
+<p>From this, we see there’s some anomalies that can be removed to get a clearer picture. Rules infractions and abandoned games can go, as well as games where the result seems inconclusive (‘*’ in the result column). I considered removing draws as well since they only comprise of a small amount of games but their inclusion doesn’t hurt our results so I decided to leave them in. I also removed bullet and ultra bullet games since they are so short that no meaningful fluctuation in time spent can be observed.</p>
+
+<p>Increment has a lot of unusual values which are not commonly used. This is probably due to people creating custom game challenges with less used or obscure time controls. 
+We can remove the odd ones out to get a clearer picture of the ones that are commonly found in online chess games.</p>
+
+<p>99% of games are a total of 75 moves or shorter, which indicates that we can remove the last 50 ply without losing much data, significantly speeding up the analysis, as well as reducing the skewness of those distributions. We cut off some games before their conclusion, but since we’re analyzing on a per-move basis, this should pose too much of a problem .</p>
+
+<p>Finally, to reduce the skew of the rating distribution and make the results more applicable to the general population, we will only look at games with a maximum rating of 2500 for either player, and a rating difference of no more than 200 between them. This is to remove any confounding factors such as the stress / complacency of playing against a higher or lower rated player, respectively.</p>
+
+<p>It’s possible that Blitz games prove to be too short as well, so we might revisit this at a later moment.
+But for now, <em>let’s clean some data!</em></p>
+
+<h2 id="data-cleaning">Data cleaning</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">Termination</span><span class="sh">'</span><span class="p">].</span><span class="nf">isin</span><span class="p">([</span><span class="sh">"</span><span class="s">Abandoned</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Rules infraction</span><span class="sh">"</span><span class="p">])]</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="o">~</span><span class="n">df_clean</span><span class="p">[</span><span class="sh">'</span><span class="s">GameMode</span><span class="sh">'</span><span class="p">].</span><span class="nf">isin</span><span class="p">([</span><span class="sh">'</span><span class="s">Bullet</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">UltraBullet</span><span class="sh">'</span><span class="p">])]</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[(</span><span class="n">df_clean</span><span class="p">[</span><span class="sh">'</span><span class="s">WhiteElo</span><span class="sh">'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">2500</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="sh">'</span><span class="s">BlackElo</span><span class="sh">'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">2500</span><span class="p">)]</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">df_clean</span><span class="p">[</span><span class="sh">'</span><span class="s">Increment</span><span class="sh">'</span><span class="p">].</span><span class="nf">isin</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">])]</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[(</span><span class="n">df_clean</span><span class="p">[</span><span class="sh">'</span><span class="s">WhiteRatingDiff</span><span class="sh">'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">200</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="sh">'</span><span class="s">WhiteRatingDiff</span><span class="sh">'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">200</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">col_prefix</span> <span class="ow">in</span> <span class="p">[</span><span class="sh">'</span><span class="s">Eval_ply_</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Move_ply_</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Clock_ply_</span><span class="sh">'</span><span class="p">]:</span>
+    <span class="n">columns_to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">col_prefix</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="sh">'</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">151</span><span class="p">,</span> <span class="mi">201</span><span class="p">)]</span>
+    <span class="n">df_clean</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">.</span><span class="nf">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columns_to_drop</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="data-cleaning-results">Data cleaning results</h3>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Removed    17 Games with irregular Termination
+Removed 43253 Bullet &amp; UltraBullet games
+Removed   310 Games with 2500 or higher ELO players
+Removed  3503 Games with non-standard increments
+Removed  4417 Games with RatingDiff of 200 or more
+Removed    50 Columns for the last ply
+
+Removed 47997 games in total
+Remaining games: 152003 from 200000 (76.00%)
+Old shape: (200000, 628)
+New shape: (152003, 478)
+</code></pre></div></div>
+
+<p>These relatively simple filters make the dataset more normalized and remove outliers on key features. 
+Now we can plot the descriptive stats again to see if things improved:</p>
+
+<p><br />
+<img src="\images\chess\EDA_after.png" title="EDA subgraphs" style="display: flex; max-width: 100%;" />
+<br /></p>
+
+<p>Those graphs already look a lot cleaner. 
+Rating distribution skewness went from 0.24 to 0.14, and game length skewness from 1.17 to 0.68. This makes the distribution measurably more symmetrical.
+Removing the odd increments also decreases the influence that rare custom time controls have on the data.</p>
+
+<h2 id="extracting-time-and-evaluation-difference">Extracting Time and Evaluation Difference</h2>
+
+<p>To be able to answer our research question, we need to make a dataframe containing the time spent on each move, together with the evaluation difference between that move and the next one. An important factor to include is the increment the player gets, as it will be added to the clock after each move and thus isn’t actually time spent on making the move itself.</p>
+
+<p>First, we make filtered dataframes containing only the relevant columns. Then we combine those, before finally starting on the bulk of the data processing for this project. The final pipeline is the result of a lot of trial and error, pushing my Python skills to it’s limit.</p>
+
+<p>I’ve tried to explain my thought process as much as possible, but if you just want to go to the results, you can click the button below to collapse the code.</p>
+
+<details open="">
+  <summary>
+    <p>Show / hide the code</p>
+  </summary>
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Extract the Eval_ply_x columns
+</span><span class="n">eval_columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="sh">'</span><span class="s">Eval_ply_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="sh">'</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">151</span><span class="p">)]</span>
+<span class="n">df_eval</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">eval_columns</span><span class="p">]</span>
+
+<span class="c1"># Extract the Clock_ply_x columns and convert to total seconds
+</span><span class="n">clock_columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="sh">'</span><span class="s">Clock_ply_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="sh">'</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">151</span><span class="p">)]</span>
+<span class="n">df_time</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">clock_columns</span><span class="p">].</span><span class="nf">apply</span><span class="p">(</span><span class="n">pd</span><span class="p">.</span><span class="n">to_timedelta</span><span class="p">)</span>
+<span class="n">df_time</span> <span class="o">=</span> <span class="n">df_time</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="nf">total_seconds</span><span class="p">()</span> <span class="k">if</span> <span class="n">pd</span><span class="p">.</span><span class="nf">notna</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Combine both DataFrames and add some relevant columns
+</span><span class="n">df_combined</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">concat</span><span class="p">([</span><span class="n">df_eval</span><span class="p">,</span> <span class="n">df_time</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">columns_to_add</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">Index</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">GameMode</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Increment</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">IncrementCategory</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">df_combined</span><span class="p">[</span><span class="n">columns_to_add</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">columns_to_add</span><span class="p">]</span>
+</code></pre></div>  </div>
+
+  <p>When the computer sees a <em>forced mate sequence</em>, it will give the number of moves until mate, with a hashtag in front of it. 
+Later on in the limitations I will talk more about how this poses some problems for our analysis. 
+Since there is no way to convert this into a numerical value without choosing an arbitrary number, 
+our function will skip over moves that contain a forced mate. 
+To do this, we convert these to <code class="language-plaintext highlighter-rouge">None</code> values, and then skip over those later on in the function.</p>
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">eval_conversion</span><span class="p">(</span><span class="n">eval_value</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="p">.</span><span class="nf">isnull</span><span class="p">(</span><span class="n">eval_value</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">eval_str</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">eval_value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="sh">'</span><span class="s">#</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">eval_str</span><span class="p">:</span>      
+        <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">try</span><span class="p">:</span>                     
+        <span class="k">return</span> <span class="nf">float</span><span class="p">(</span><span class="n">eval_str</span><span class="p">)</span>          
+    <span class="nf">except </span><span class="p">(</span><span class="nb">ValueError</span><span class="p">,</span> <span class="nb">TypeError</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">None</span>
+</code></pre></div>  </div>
+
+  <p>We need to loop over each game, and within each game over each move. The move data will be appended to a list at the end of each loop.</p>
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">all_moves</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="p">.</span><span class="nf">iterrows</span><span class="p">():</span>              
+    <span class="c1"># Make sure we always have a move to compare to (+1 because range is non-inclusive)
+</span>    <span class="k">for</span> <span class="n">move_num</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_ply</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Determine the color to see if we need to multiply the evaluation by -1
+</span>        <span class="n">color</span> <span class="o">=</span> <span class="sh">'</span><span class="s">white</span><span class="sh">'</span> <span class="k">if</span> <span class="n">move_num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="sh">'</span><span class="s">black</span><span class="sh">'</span>
+        <span class="c1"># Column names for current and next move
+</span>        <span class="n">curr_time_col</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">Clock_ply_</span><span class="si">{</span><span class="n">move_num</span><span class="si">}</span><span class="sh">'</span>
+        <span class="n">next_time_col</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">Clock_ply_</span><span class="si">{</span><span class="n">move_num</span> <span class="o">+</span> <span class="mi">2</span><span class="si">}</span><span class="sh">'</span>
+        <span class="n">curr_eval_col</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">Eval_ply_</span><span class="si">{</span><span class="n">move_num</span><span class="si">}</span><span class="sh">'</span>
+        <span class="n">next_eval_col</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">Eval_ply_</span><span class="si">{</span><span class="n">move_num</span> <span class="o">+</span> <span class="mi">2</span><span class="si">}</span><span class="sh">'</span>
+</code></pre></div>  </div>
+
+  <p>We do all the necessary checks to see if all values are valid, before applying the eval_conversion function we wrote earlier.</p>
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Check if all columns exist
+</span><span class="k">if</span> <span class="ow">not</span> <span class="nf">all</span><span class="p">(</span><span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="p">.</span><span class="n">columns</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> 
+<span class="p">[</span><span class="n">curr_time_col</span><span class="p">,</span> <span class="n">next_time_col</span><span class="p">,</span> <span class="n">curr_eval_col</span><span class="p">,</span> <span class="n">next_eval_col</span><span class="p">]):</span>
+    <span class="k">continue</span>
+<span class="c1"># Convert evaluations to numeric (or None)
+</span><span class="n">curr_eval</span> <span class="o">=</span> <span class="nf">eval_conversion</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">curr_eval_col</span><span class="p">])</span>
+<span class="n">next_eval</span> <span class="o">=</span> <span class="nf">eval_conversion</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">next_eval_col</span><span class="p">])</span>
+<span class="c1"># Skip current move if either evaluation is None
+</span><span class="k">if</span> <span class="n">curr_eval</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">next_eval</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">continue</span>
+<span class="c1"># Check for valid clock times
+</span><span class="k">if</span> <span class="n">pd</span><span class="p">.</span><span class="nf">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">curr_time_col</span><span class="p">])</span> <span class="ow">or</span> <span class="n">pd</span><span class="p">.</span><span class="nf">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">next_time_col</span><span class="p">]):</span>
+    <span class="k">continue</span>
+</code></pre></div>  </div>
+  <p>Finally, we can calculate the time spent on each move, and the change in computer evaluation. The phase of the game the move was made in is converted, and then a dictionary with all the data for that move is made and appended to the move list.</p>
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Calculate time spent and eval change
+</span><span class="n">time_spent</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">curr_time_col</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="n">next_time_col</span><span class="p">]</span> <span class="o">+</span> <span class="n">row</span><span class="p">[</span><span class="sh">'</span><span class="s">Increment</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">eval_change</span> <span class="o">=</span> <span class="n">next_eval</span> <span class="o">-</span> <span class="n">curr_eval</span>
+<span class="c1"># Determine rough phase of the game the move was made in
+</span><span class="k">def</span> <span class="nf">get_game_phase</span><span class="p">(</span><span class="n">move_num</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">move_num</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sh">'</span><span class="s">opening</span><span class="sh">'</span>
+    <span class="k">elif</span> <span class="n">move_num</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sh">'</span><span class="s">early_middle</span><span class="sh">'</span>
+    <span class="k">elif</span> <span class="n">move_num</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sh">'</span><span class="s">late_middle</span><span class="sh">'</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sh">'</span><span class="s">endgame</span><span class="sh">'</span>
+<span class="n">game_phase</span> <span class="o">=</span> <span class="nf">get_game_phase</span><span class="p">(</span><span class="n">move_num</span><span class="p">)</span>
+<span class="c1"># Store move data
+</span><span class="n">move_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">game_id</span><span class="sh">'</span><span class="p">:</span> <span class="n">idx</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">move_number</span><span class="sh">'</span><span class="p">:</span> <span class="p">(</span><span class="n">move_num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">color</span><span class="sh">'</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">time_spent</span><span class="sh">'</span><span class="p">:</span> <span class="n">time_spent</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">eval_change</span><span class="sh">'</span><span class="p">:</span> <span class="nf">round</span><span class="p">(</span><span class="n">eval_change</span> <span class="k">if</span> <span class="n">color</span> <span class="o">==</span> <span class="sh">'</span><span class="s">white</span><span class="sh">'</span> <span class="k">else</span> <span class="o">-</span><span class="n">eval_change</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="sh">'</span><span class="s">game_phase</span><span class="sh">'</span><span class="p">:</span> <span class="n">game_phase</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">increment</span><span class="sh">'</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="sh">'</span><span class="s">Increment</span><span class="sh">'</span><span class="p">],</span>
+    <span class="sh">'</span><span class="s">game_mode</span><span class="sh">'</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="sh">'</span><span class="s">GameMode</span><span class="sh">'</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="c1"># After processing each game, append the move data to the main list
+</span><span class="n">all_moves</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">move_data</span><span class="p">)</span>
+</code></pre></div>  </div>
+</details>
+
+<h2 id="results">Results</h2>
+
+<p>Now that we have our DataFrame on a per move basis, a second round of data examination and cleaning begins.
+First, let’s look at the boxplots for evaluation change and time spent to check for any outliers. The scatterplot also helps show how the data is distributed.</p>
+
+<p><img src="\images\chess\move_eval_boxplot.png" title="EDA subgraphs" style="display: flex; max-width: 80%;" /></p>
+
+<p><img src="\images\chess\eval_time_scatter.png" title="EDA subgraphs" style="display: flex; max-width: 80%;" /></p>
+
+<p>There are some unexpected things happening here:</p>
+
+<p><u>Some moves seem to take <i>negative time</i> to make</u>, even after taking the increment into account.
+While it could potentially be an error in the code, this is likely due to a feature on lichess where your opponent can give you extra time on your clock,
+which will show up as negative time spent on that move.
+Some of the extremely large time spent values can also be due to this feature, as it allows a player to have much more time on their clock than the format should allow. With some exceptions, most of the large time spent comes from classical games, which can last for hours, so that makes sense.</p>
+
+<p>This is also where we see a problem arise with the <strong>interpretability of computer evaluations</strong>.
+During the processing, we ommitted any move where the current or previous move contained a forced mate evaluation, as those cannot be easily converted into a numerical value. Mate in one, two or three moves can be conceptualized as being relatively easy to find, but if the computer sees forced mate in 20 moves, and <em>every other sequence of moves</em> leads to a much worse position, the position will be <strong>much worse in practical terms</strong>. A chess computer has no idea on how to differentiate those, as the evaluation of a position is based on the best move in that position.
+Similarly, when a position is really good but the computer can’t find a sequence leading to forced mate, it can produce some crazy high evaluations.</p>
+
+<p><strong>Good to know:</strong> chess evaluation is supposed to be mapped back to the value of the pieces. So if the evaluation is +9, this should roughly mean white is up the equivalent of a full queen.</p>
+<blockquote>
+  <p><strong>This leads to some questions about interpretability</strong>:</p>
+</blockquote>
+
+<ul>
+  <li>If the evaluation is already +20 for your opponent, and your move takes it to +50, did the position get worse in human terms?</li>
+  <li>If the inverse happens, and you manage to ‘only’ be down the equivalent of two queens instead of four, did your chances to win really improve?</li>
+</ul>
+
+<p>In other words, <strong>computer evaluation cannot be seen as a continuous scale on which to evaluate a position</strong>. Go past a threshold of, say, 10 and subsequent increases start to matter less and less, in practical human terms.
+Comparison with the second best computer move would provide some insight into how critical finding a specific move is, but that isn’t available in this dataset.
+For more analysis about the relationship between computer evaluation and winning chances, check out <a href="https://web.chessdigits.com/articles/when-should-you-resign">this article</a> by the creator of the dataset.</p>
+
+<h2 id="whats-next">What’s next?</h2>
+
+<p>Originally, and perhaps naively, I was planning to just do regression and correlation analyses on the extracted data.
+But after delving into the results, it seems that it is very hard to obtain useful insights from computer evaluation change <strong>as an absolute numerical value</strong>.
+Its value and relevancy fluctuates too drastically based on how close to 0 it is.</p>
+
+<p>A more reasonable approach would be to turn evaluation changes into <strong>categories</strong>:
+Analyzing data like this removes the scale problem of evaluations, and focuses on the question at hand; if spending more time leads to fewer <em>mistakes</em>.</p>
+
+<p>To address this, we can categorize evaluation changes into three main types:</p>
+
+<ul>
+  <li><strong>Blunder:</strong> A move that drastically worsens the evaluation, turning a balanced or winning position into a losing one.</li>
+  <li><strong>Mistake:</strong> A move that worsens the evaluation, but not as severely as a blunder, reducing a winning advantage to a smaller one.</li>
+  <li><strong>Inaccuracy:</strong> A move that slightly worsens the evaluation, but doesn’t change the overall assessment of the position.</li>
+</ul>
+
+<p>By grouping moves this way, we can analyze whether spending more time reduces the frequency of blunders and mistakes, rather than focusing on raw evaluation numbers.
+This approach aligns better with how chess players and coaches assess move quality in practical terms.
+<br /></p>
+
+<!-- ## Categorizing the Moves -->
+
+<hr />
+
+<p><br /></p>
+
+<p>For those of you that have read this post all the way through, thank you so much! Your attention and support means a lot to me.
+As a parting gift, I made this nice graph of the top 20 most commonly played openings in the dataset. Check it out below!</p>
+
+<p><br /></p>
+
+<p><img src="\images\chess\win_percentages_transparent.png" title="EDA subgraphs" style="display: flex; max-width: 80%;" /></p>
+
+<!-- Openings are divided into many subvariations, of which there are too many to analyse them all now. Because of that I wanted to condense most of the subvariations into their main openings, and then look at the win rates of the 20 that were most commonly played in the dataset.
+
+Most of this was done by splitting each opening name on the characters ' : ' ' , ' and  ' # ', then only keeping the first part of the opening name, and finally stripping any leading or trailing spaces. -->
+
+      </div>
+      <div>
+        <p><span class="share-box">Share:</span> <a href="http://twitter.com/share?text=Does spending more time on a chess move increase its quality? Analyzing 200k online games&url=https://jenskorzilius.nl/chess/analyzing-online-games" target="_blank">Twitter</a>, <a href="https://www.facebook.com/sharer.php?u=https://jenskorzilius.nl/chess/analyzing-online-games" target="_blank">Facebook</a></p>
+      </div>
+
+  <!-- <div class="date">
+    Written on February  8, 2025
+  </div> -->
+
+  
+</div>
+<nav class="toc-desktop">
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#dataset--domain-understanding">Dataset &amp; Domain Understanding</a></li>
+<li class="toc-entry toc-h2"><a href="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
+<li class="toc-entry toc-h2"><a href="#data-cleaning">Data cleaning</a>
+<ul class="toc__sublist">
+<li class="toc-entry toc-h3"><a href="#data-cleaning-results">Data cleaning results</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#extracting-time-and-evaluation-difference">Extracting Time and Evaluation Difference</a></li>
+<li class="toc-entry toc-h2"><a href="#results">Results</a></li>
+<li class="toc-entry toc-h2"><a href="#whats-next">What’s next?</a></li>
+</ul>
+</nav>
+  </div>
+</article>
+
+        </div>
+      </div>
+
+<!-- Footer -->
+      <div class="wrapper-footer">
+        <div class="container">
+          <footer class="footer">
+            
+<a href="mailto:jenskorzilius@hotmail.com"><i class="svg-icon email"></i></a>
+
+
+<a href="https://github.com/pil0tz" target="_blank"><i class="svg-icon github"></i></a>
+
+<a href="https://www.linkedin.com/in/jenskorzilius" target="_blank"><i class="svg-icon linkedin"></i></a>
+
+<a href="/feed.xml" target="_blank"><i class="svg-icon rss"></i></a>
+
+
+
+
+
+
+
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'G-YKYB8YW119', 'auto');
+		ga('send', 'pageview', {
+		  'page': '/chess/analyzing-online-games',
+		  'title': 'Does spending more time on a chess move increase its quality? Analyzing 200k online games'
+		});
+	</script>
+	<!-- End Google Analytics -->
+
+
+  </body>
+</html>

@@ -1,13 +1,27 @@
----
----
 [
-  {% for post in site.posts %}
+  
     {
 
-      "title"    : "{% if post.title != "" %}{{ post.title | escape }}{% else %}{{ post.excerpt | strip_html |  escape | strip }}{%endif%}",
-      "url"      : "{{ site.baseurl }}{{ post.url }}",
-      "category" : "{{ post.categories | join: ', '}}",
-      "date"     : "{{ post.date | date: "%B %e, %Y" }}"
-    } {% unless forloop.last %},{% endunless %}
-  {% endfor %}
+      "title"    : "Does spending more time on a chess move increase its quality? Analyzing 200k online games",
+      "url"      : "/chess/analyzing-online-games",
+      "category" : "Chess",
+      "date"     : "February  8, 2025"
+    } ,
+  
+    {
+
+      "title"    : "University Thesis: the Impact of Feedback Seeking Behaviour on Depression",
+      "url"      : "/feedback-behaviour-depression",
+      "category" : "Psychology",
+      "date"     : "February  5, 2025"
+    } ,
+  
+    {
+
+      "title"    : "Powercreep: Analyzing the gradual increase in power level of &lt;em&gt;Magic: The Gathering&lt;/em&gt; cards",
+      "url"      : "/mtg/powercreep",
+      "category" : "MTG",
+      "date"     : "February  3, 2025"
+    } 
+  
 ]

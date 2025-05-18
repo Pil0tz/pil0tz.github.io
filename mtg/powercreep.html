@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YKYB8YW119"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YKYB8YW119');
+      </script>
+
+
+    <title>Powercreep: Analyzing the gradual increase in power level of <em>Magic: The Gathering</em> cards – Jens Korzilius – Aspiring Data Analyst</title>
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Powercreep: Analyzing the gradual increase in power level of Magic: The Gathering cards" />
+<meta name="author" content="Jens Korzilius" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Magic: The Gathering has been around since 1993, making it the first collectible card game ever created. This article explores how it’s cards got progressively stronger over the years, in a process known as powercreep. I also look at some interesting scientific literature about the ‘strength’ of cards in CCG’s." />
+<meta property="og:description" content="Magic: The Gathering has been around since 1993, making it the first collectible card game ever created. This article explores how it’s cards got progressively stronger over the years, in a process known as powercreep. I also look at some interesting scientific literature about the ‘strength’ of cards in CCG’s." />
+<link rel="canonical" href="https://jenskorzilius.nl/mtg/powercreep" />
+<meta property="og:url" content="https://jenskorzilius.nl/mtg/powercreep" />
+<meta property="og:site_name" content="Jens Korzilius" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-02-03T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Powercreep: Analyzing the gradual increase in power level of Magic: The Gathering cards" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jens Korzilius"},"dateModified":"2025-02-03T00:00:00+00:00","datePublished":"2025-02-03T00:00:00+00:00","description":"Magic: The Gathering has been around since 1993, making it the first collectible card game ever created. This article explores how it’s cards got progressively stronger over the years, in a process known as powercreep. I also look at some interesting scientific literature about the ‘strength’ of cards in CCG’s.","headline":"Powercreep: Analyzing the gradual increase in power level of Magic: The Gathering cards","mainEntityOfPage":{"@type":"WebPage","@id":"https://jenskorzilius.nl/mtg/powercreep"},"url":"https://jenskorzilius.nl/mtg/powercreep"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+
+<meta property="og:description" content="Magic: The Gathering has been around since 1993, making it the first collectible card game ever created. This article explores how it’s cards got progressively stronger over the years, in a process known as powercreep. I also look at some interesting scientific literature about the ‘strength’ of cards in CCG’s.
+
+" />
+
+<meta name="author" content="Jens Korzilius" />
+
+
+<meta property="og:title" content="Powercreep: Analyzing the gradual increase in power level of <em>Magic: The Gathering</em> cards" />
+<meta property="twitter:title" content="Powercreep: Analyzing the gradual increase in power level of <em>Magic: The Gathering</em> cards" />
+
+
+
+<meta property="og:image" content="https://jenskorzilius.nl/images/profile-picture.jpg"/>
+<meta property="twitter:image" content="https://jenskorzilius.nl/images/profile-picture.jpg"/>
+
+
+    
+    <link rel="stylesheet" type="text/css" href="/assets/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="Jens Korzilius - Aspiring Data Analyst" href="/feed.xml" />
+    <link rel="canonical" href="https://jenskorzilius.nl/mtg/powercreep" />
+    
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    
+  </head>
+  
+  <body>
+    
+<!-- Header -->
+    <div class="wrapper-container">
+      <div class="wrapper-masthead">
+        <div class="container">
+          <header class="masthead clearfix">
+              <!-- Site information -->
+            <a href="/" class="site-avatar"><img src="/images/profile-picture.jpg" alt="" /></a>
+            <div class="site-info">
+              <h1 class="site-name"><a href="/">Jens Korzilius</a></h1>
+              <p class="site-description">Aspiring Data Analyst</p> 
+            </div>
+              <!-- Search menu -->
+            <nav>
+              <a href="/">Portfolio</a>
+              <!-- <a href="/search">Search</a> -->
+              <!-- <a href="/about">About me</a> -->
+              <a href = "/resume">Resume</a>
+              <!-- <a href="/archive">Archive</a>  #TODO: add back once I have sufficient number of posts--> 
+            </nav>
+          </header>
+        </div>
+      </div>
+
+      
+<!-- Main content -->
+      <div class="wrapper-main">
+        <div id="main" role="main" class="container">
+          <article class="post detailed">
+  <h1 class="post-title">Powercreep: Analyzing the gradual increase in power level of <em>Magic: The Gathering</em> cards</h1>
+  <div class="content-with-toc">
+    
+    <div class="main-article">
+      
+          <img class='cover-image post-cover' src="/images/covers/mtg-powercreep-cover.jpg" alt="/images/covers/mtg-powercreep-cover.jpg" />
+      
+      <br><br>
+      <!-- <p class="author_title">Jens Korzilius  ·  February  3, 2025</p> -->
+      
+      <!-- <div class="post-tags"> TODO: turn back on category tags once they're properly implemented in front page
+        
+        
+          <a href="/categories/#MTG">MTG</a>
+          
+        
+      </div> -->
+      <div class="entry">
+        <nav id="mobile-toc" class="toc-mobile">
+          
+        </nav>
+        <p>Magic: The Gathering has been around since 1993, making it the first collectible card game ever created. This article explores how it’s cards got progressively stronger over the years, in a process known as powercreep. I also look at some interesting scientific literature about the ‘strength’ of cards in CCG’s.
+<!--more--></p>
+
+<p>A lot of cards have been designed and printed since the original 295 from Alpha; 29164 mechanicaly unique cards, spread across 86290 printings with 40846 unique artworks to be exact. To keep the designs interesting for players, inevitably new cards will come out that are strictly better in some capacity than older cards, a phenomenon known as ‘power creep’.</p>
+
+      </div>
+      <div>
+        <p><span class="share-box">Share:</span> <a href="http://twitter.com/share?text=Powercreep: Analyzing the gradual increase in power level of <em>Magic: The Gathering</em> cards&url=https://jenskorzilius.nl/mtg/powercreep" target="_blank">Twitter</a>, <a href="https://www.facebook.com/sharer.php?u=https://jenskorzilius.nl/mtg/powercreep" target="_blank">Facebook</a></p>
+      </div>
+
+  <!-- <div class="date">
+    Written on February  3, 2025
+  </div> -->
+
+  
+</div>
+<nav class="toc-desktop">
+  
+</nav>
+  </div>
+</article>
+
+        </div>
+      </div>
+
+<!-- Footer -->
+      <div class="wrapper-footer">
+        <div class="container">
+          <footer class="footer">
+            
+<a href="mailto:jenskorzilius@hotmail.com"><i class="svg-icon email"></i></a>
+
+
+<a href="https://github.com/pil0tz" target="_blank"><i class="svg-icon github"></i></a>
+
+<a href="https://www.linkedin.com/in/jenskorzilius" target="_blank"><i class="svg-icon linkedin"></i></a>
+
+<a href="/feed.xml" target="_blank"><i class="svg-icon rss"></i></a>
+
+
+
+
+
+
+
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'G-YKYB8YW119', 'auto');
+		ga('send', 'pageview', {
+		  'page': '/mtg/powercreep',
+		  'title': 'Powercreep: Analyzing the gradual increase in power level of <em>Magic: The Gathering</em> cards'
+		});
+	</script>
+	<!-- End Google Analytics -->
+
+
+  </body>
+</html>
