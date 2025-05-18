@@ -90,7 +90,6 @@ plugins:
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
   - jekyll-seo-tag
   - jekyll-paginate
-  - jekyll-toc
   
 
 include: ['_pages']
@@ -106,13 +105,6 @@ exclude:
   - README.md
   - CNAME
 
-# TOC settings
-toc:
-  min_level: 1
-  max_level: 3
-  list_class: toc
-  list_class: toc__list
-  sublist_class: toc__sublist
 
 
 # Resume settings
