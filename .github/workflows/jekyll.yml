@@ -29,4 +29,6 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_site
-        publish_branch: gh-pages  # Optional but clearer
+        publish_branch: gh-pages
+        user_name: Jens K
+        user_email: jenskorzilius@hotmail.com
