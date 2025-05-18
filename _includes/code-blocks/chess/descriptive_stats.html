@@ -1,0 +1,117 @@
+{% raw %}
+<details>
+  <summary>Click here to see the code
+  </summary>
+  <div class='details-content'>
+  ```python
+  def get_rating_ranges(df, bin_size=100):
+    # Get min and max ratings amongs both colors
+    min_rating = min(df['WhiteElo'].min(), df['BlackElo'].min())
+    max_rating = max(df['WhiteElo'].max(), df['BlackElo'].max())
+    
+    # Round min down and max up to nearest bin_size
+    min_rating = (min_rating // bin_size) * bin_size
+    max_rating = ((max_rating // bin_size) + 1) * bin_size
+    
+    # Create bins
+    rating_bins = list(range(min_rating, max_rating + bin_size, bin_size))
+    
+    # Create labels
+    rating_labels = [f'{bin_start} - {bin_start + bin_size - 1}'\ 
+                    for bin_start in rating_bins[:-1]]
+    rating_labels[-1] = f'{rating_bins[-2]}+'  # Indicate the last bin's upper bound
+    
+    # Create rating ranges
+    df['WhiteRatingRange'] = pd.cut(df['WhiteElo'], 
+                                   bins=rating_bins, 
+                                   labels=rating_labels)
+    df['BlackRatingRange'] = pd.cut(df['BlackElo'], 
+                                   bins=rating_bins, 
+                                   labels=rating_labels)
+    
+    # Combine ranges
+    combined_rating_range = pd.concat([df['WhiteRatingRange'], 
+                                     df['BlackRatingRange']], 
+                                    ignore_index=True)
+    
+    return rating_labels, combined_rating_range
+  ```
+
+  Feeling good about this refactor, I decided to write a similar function for the game length. 
+  The time control and increment will only be added to the dataframe once and thus don't need to be included in a function.
+
+  ```python
+df['GameMode'] = df['Event'].str.split().str[1]
+df['Increment'] = df['TimeControl'].str.split('+').str[1].astype('int')
+df['IncrementCategory'] = df['Increment'].astype('category')
+
+def get_game_length(df):
+    move_columns = [col for col in df.columns if col.startswith('Move_ply_')]
+    game_length_df = df[['Index']].copy()
+    game_length_df['game_length'] = ((pd.Index(df[move_columns].isna().idxmax(axis=1)) \
+    .str.extract('(\d+)').astype(float) + 1) // 2).astype(int)
+    
+    return game_length_df
+  ```   
+Finally, I added a function to plot the different histograms into one plot.
+
+```python
+def display_distribution_statistics(df, file_name=None):
+    # Set the plot aesthetics
+    sns.set_style('darkgrid')
+    import matplotlib as mpl
+    mpl.rcParams['font.family'] = 'DejaVu Sans'
+    # Run all data creation functions
+    rating_labels, combined_rating_range = get_rating_ranges(df, bin_size=100)
+    game_length_df = get_game_length(df)
+    # Create the plot
+    fig, ((ax1, ax2), (ax3, ax4), (ax5, ax6)) = plt.subplots(3, 2, figsize=(14, 14))
+    fig.suptitle("Descriptive statistics", fontsize= 25)
+    sns.set_style('darkgrid')
+    # Rating distribution (ax1)
+    sns.histplot(ax=ax1, data=combined_rating_range, kde=True, kde_kws={'bw_adjust': 4})
+    ax1.set_title('Rating', fontsize=20)
+    ax1.set_xticklabels(rating_labels, rotation=60, ha='right', rotation_mode='anchor')
+    ax1.set_ylabel('')
+    ax1.set_axisbelow(True)
+    # Game terminations (ax2)
+    sns.histplot(ax=ax2, data=df, x='Termination')
+    ax2.set_title('Game termination', fontsize = 20)
+    ax2.set_xlabel('')
+    ax2.set_ylabel('')
+    # Game length (ax3)
+    sns.histplot(ax=ax3, data=game_length_df, x='game_length', binwidth=5, kde=True)
+    ax3.set_title('Game length', fontsize = 20)
+    ax3.set_xlabel('')
+    ax3.set_ylabel('')
+    # Game mode (ax4)
+    sns.histplot(ax=ax4, data=df, x='GameMode')
+    ax4.set_title('Game mode', fontsize = 20)
+    ax4.set_xlabel('')
+    ax4.set_ylabel('')
+    # Game result (ax5)
+    sns.histplot(ax=ax5, data=df, x='Result')
+    ax5.set_title('Game result', fontsize = 20)
+    ax5.set_xlabel('')
+    ax5.set_ylabel('')
+    # Increment counts (ax6)
+    increment_order = df['Increment'].value_counts(ascending=False).index
+    sns.countplot(ax=ax6, data=df, x='Increment', order=increment_order)
+    ax6.set_title('Increment', fontsize = 20)
+    ax6.set_xlabel('')
+    ax6.set_ylabel('')
+
+    plt.tight_layout(rect=[0, 0, 1, 0.96])
+    if file_name:
+        plt.savefig(file_name, dpi=300, bbox_inches='tight', transparent=True, )
+    plt.show()
+```
+
+<button class="close-details-button" onclick="
+  const details = this.closest('details');
+  details.removeAttribute('open');
+  details.scrollIntoView({ behavior: 'instant', block: 'center' });">Click to close the code block</button>
+</div>
+
+</details>
+{% endraw %}

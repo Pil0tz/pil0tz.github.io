@@ -5,7 +5,9 @@
 
 // Colors
 $blue: #4183C4;
-
+$lightPurple: #7C4585;
+$lighterPurple: #c374cf;
+$darkPurple: #3D365C;
 // Grays
 $black: #000;
 $darkerGray: #222;
@@ -30,3 +32,10 @@ $georgia: Georgia, serif;
     @content;
   }
 }
+
+// Hardcoded MOBILE BREAKPOINT
+$MobileCutoff: 1000px;
+
+
+// BOX SHADOW
+$DefaultBoxShadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
