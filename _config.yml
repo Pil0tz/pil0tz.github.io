@@ -91,6 +91,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-paginate-v2
   - jekyll-toc
+  - jekyll-target-blank
   
 include: ['_pages']
 
@@ -112,6 +113,7 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+  - .well-known
 
 # TOC settings
 toc:

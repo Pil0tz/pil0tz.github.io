@@ -16,4 +16,5 @@ group :jekyll_plugins do
   gem 'jekyll-paginate-v2', '~> 3.0'
   gem 'kramdown'
   gem 'kramdown-parser-gfm'
+  gem 'jekyll-target-blank'
 end
