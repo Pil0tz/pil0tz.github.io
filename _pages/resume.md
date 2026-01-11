@@ -52,7 +52,7 @@ permalink: /resume/
       <h2>Education</h2>
     </header>
 
-    {% for education in site.data.education %}
+    {% for education in site.data.cv.education %}
     <div class="resume-item" itemscope itemprop="alumniOf" itemtype="http://schema.org/CollegeOrUniversity">
       <h3 class="resume-item-title" itemprop="name">{% if education.url %}<a href="{{ education.url }}" target="_blank" itemprop="url">{{ education.uni }}</a>{% else %}{{ education.uni }}{% endif %}</h3>
       <!-- <h3 class="resume-item-title" itemprop="name">{{ education.uni }}</h3> -->
@@ -80,7 +80,7 @@ permalink: /resume/
       <h2>Projects</h2>
     </header>
 
-    {% for project in site.data.projects %}
+    {% for project in site.data.cv.projects %}
     <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
       <h3 class="resume-item-title" itemprop="name">{% if project.url %}<a href="{{ project.url }}" itemprop="url">{{ project.project }}</a>{% else %}{{ project.project }}{% endif %}</h3>
@@ -102,7 +102,7 @@ permalink: /resume/
       <h2>Experience</h2>
     </header>
 
-    {% for job in site.data.experience %}
+    {% for job in site.data.cv.experience %}
     <div class="resume-item" itemscope itemprop="worksFor" itemtype="http://schema.org/Organization">
       <h3 class="resume-item-title" itemprop="name">{% if job.url %}<a href="{{ job.url }}" target="_blank" itemprop="url">{{ job.company }}</a>{% else %}{{ job.company }}{% endif %}</h3>
       <h4 class="resume-item-details" itemprop="description">{{ job.position }} &bull; {{ job.duration }}</h4>
@@ -122,7 +122,7 @@ permalink: /resume/
     <header class="section-header">
       <h2>Skills</h2>
     </header>
-    {% for skill in site.data.skills %}
+    {% for skill in site.data.cv.skills %}
     <div class="resume-item">
       <h4 class="resume-item-details">{{ skill.skill }}</h4>
       <p class="resume-item-copy">{{ skill.description }}</p>
@@ -142,7 +142,7 @@ permalink: /resume/
       <h2>Recognition</h2>
     </header>
 
-    {% for recognition in site.data.recognitions %}
+    {% for recognition in site.data.cv.recognitions %}
     <div class="resume-item">
       <h3 class="resume-item-title" itemprop="award">{{ recognition.award }}</h3>
       <h4 class="resume-item-details">{{ recognition.organization }} &bull; {{ recognition.year }}</h4>
@@ -162,7 +162,7 @@ permalink: /resume/
       <h2>Associations</h2>
     </header>
 
-    {% for association in site.data.associations %}
+    {% for association in site.data.cv.associations %}
     <div class="resume-item" itemscope itemprop="memberOf" itemtype="http://schema.org/Organization">
       <h3 class="resume-item-title" itemprop="name">{% if association.url %}<a href="{{ association.url }}">{{ association.organization }}</a>{% else %}{{ association.organization }}{% endif %}</h3>
       <h4 class="resume-item-details" itemprop="description">{{ association.role }} &bull; {{ association.year }}</h4>
@@ -184,7 +184,7 @@ permalink: /resume/
 
     <div class="resume-item">
       <ul class="resume-item-list">
-        {% for interest in site.data.interests %}
+        {% for interest in site.data.cv.interests %}
         <li>{{ interest.description }}</li>
         {% endfor %}
       </ul>
@@ -204,7 +204,7 @@ permalink: /resume/
 
     <div class="resume-item">
       <ul class="resume-item-list">
-        {% for link in site.data.links %}
+        {% for link in site.data.cv.links %}
         <li><a href={{ link.url }} itemprop="url">{{ link.description }}</a></li>
         {% endfor %}
       </ul>

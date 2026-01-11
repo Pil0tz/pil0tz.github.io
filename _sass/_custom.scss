@@ -20,6 +20,7 @@
 
 .container {
    width: 70%;
+   max-width: 50rem;
    @media (max-width: $MobileCutoff) {
        width: 90%;
    }
@@ -215,7 +216,7 @@ table {
 .main-article {
   flex: 1 1 0;
   min-width: 0;
-  max-width: 80%;
+  // max-width: 80%;
   padding-left: 0;
   padding-right: 0;
 }
@@ -228,13 +229,16 @@ table {
   
   .toc-desktop {
     display: block;
-    width: 22vw;
+    position: fixed;
+    top: 10rem;
+    right: 1rem;
+    width: 20vw;
     min-width: 15vw;
-    max-width: 22vw;
-    margin: 0em 0em 0em 1em;
-    position: sticky;
-    top: 2rem;
+    max-width: 30%;
+    margin: 0;
     align-self: flex-start;
+    z-index: 100;
+    height: auto;
   }
 }
 

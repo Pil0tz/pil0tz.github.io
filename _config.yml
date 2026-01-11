@@ -2,6 +2,13 @@
 # This file contains configuration flags to customize your site
 #
 
+# Multilingual configuration
+languages: ['en', 'nl']
+default_language: 'en'
+language_names:
+  en: 'English'
+  nl: 'Nederlands'
+
 # Name of your site (displayed in the header)
 name: Jens Korzilius
 
@@ -93,6 +100,21 @@ plugins:
   - jekyll-toc
   - jekyll-target-blank
   
+# Collections for language-specific content
+collections:
+  posts_en:
+    output: true
+    permalink: /en/:title/
+  posts_nl:
+    output: true
+    permalink: /nl/:title/
+  pages_en:
+    output: true
+    permalink: /en/:path/
+  pages_nl:
+    output: true
+    permalink: /nl/:path/
+
 include: ['_pages']
 
 pagination:
