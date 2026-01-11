@@ -5,14 +5,14 @@ lang: en
 alternate_lang_url: /nl/
 pagination:
   enabled: true
-  collection: 'posts_en'
   permalink: /en/page/:num/
 ---
 {% assign t = site.data.translations[page.lang] %}
 
 <div class="posts">
 	<!-- This is where we change what the posts show up like on the home page -->
-	{% for post in paginator.posts %}
+	{% for post in site.posts %}
+	{% if post.lang == page.lang %}
 	{% unless post.exclude %}
 	{% unless post.upcoming %}
 		<article class="post blogroll">
@@ -36,6 +36,7 @@ pagination:
 		</article>
 	{% endunless %}
 	{% endunless %}
+	{% endif %}
 	{% endfor %}
 </div>
 
@@ -49,7 +50,8 @@ pagination:
 
 <div class="posts">
 	<!-- This is where we change what the posts show up like on the home page -->
-	{% for post in paginator.posts %}
+	{% for post in site.posts %}
+	{% if post.lang == page.lang %}
 	{% unless post.exclude %}
 	{% if post.upcoming %}
 		<article class="post blogroll">
@@ -71,5 +73,6 @@ pagination:
 		</article>
 	{% endif %}
 	{% endunless %}
+	{% endif %}
 	{% endfor %}
 </div>
