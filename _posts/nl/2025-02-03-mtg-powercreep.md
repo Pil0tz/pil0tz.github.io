@@ -1,12 +1,16 @@
 ---
 layout: post
-title: "Powercreep: Analyzing the gradual increase in power level of <em>Magic: The Gathering</em> cards"
+title: "Powercreep: Analyseren van de geleidelijke toename in krachtsniveau van <em>Magic: The Gathering</em> kaarten"
+lang: nl
+alternate_lang_url: /en/mtg/powercreep/
 categories: MTG
-permalink: /mtg/powercreep
+permalink: /nl/mtg/powercreep/
 cover: /images/covers/mtg-powercreep-cover.jpg
 exclude: false
 upcoming: true
 ---
+
+# Deze pagina is nog niet vertaald
 
 Magic: The Gathering has been around since 1993, making it the first collectible card game ever created. This article explores how it's cards got progressively stronger over the years, in a process known as powercreep. I also look at some interesting scientific literature about the 'strength' of cards in CCG's.
 <!--more-->

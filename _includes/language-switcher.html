@@ -1,0 +1,9 @@
+<div class="language-switcher">
+  {% if page.lang == 'en' %}
+    <a href="{{ page.alternate_lang_url }}" class="lang-link" onclick="localStorage.setItem('preferred_lang', 'nl')">NL</a>
+    <span class="lang-current">EN</span>
+  {% elsif page.lang == 'nl' %}
+    <span class="lang-current">NL</span>
+    <a href="{{ page.alternate_lang_url }}" class="lang-link" onclick="localStorage.setItem('preferred_lang', 'en')">EN</a>
+  {% endif %}
+</div>

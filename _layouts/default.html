@@ -2,8 +2,10 @@
 <html>
   <head>
     {% include analytics_head.html %}
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+    {% assign t = site.data.translations[page.lang] %}
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ t.site.name }} – {{ t.site.description }}</title>
     {% seo title=false %}
+    {% include hreflang.html %}
     {% include meta.html %}
     
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/style.css" />
@@ -23,18 +25,19 @@
         <div class="container">
           <header class="masthead clearfix">
               <!-- Site information -->
-            <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.baseurl }}{{ site.avatar }}" alt="{{ site.title }}" /></a>
+            <a href="/{{ page.lang }}/" class="site-avatar"><img src="{{ site.baseurl }}{{ site.avatar }}" alt="{{ site.title }}" /></a>
             <div class="site-info">
-              <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-              <p class="site-description">{{ site.description }}</p> 
+              <h1 class="site-name"><a href="/{{ page.lang }}/">{{ t.site.name }}</a></h1>
+              <p class="site-description">{{ t.site.description }}</p>
             </div>
               <!-- Search menu -->
             <nav>
-              <a href="{{ site.baseurl }}/">Portfolio</a>
-              <!-- <a href="{{ site.baseurl }}/search">Search</a> -->
-              <!-- <a href="{{ site.baseurl }}/about">About me</a> -->
-              <a href = "{{ site.baseurl }}/resume">Resume</a>
-              <!-- <a href="{{ site.baseurl }}/archive">Archive</a>  #TODO: add back once I have sufficient number of posts--> 
+              <a href="/{{ page.lang }}/">{{ t.nav.portfolio }}</a>
+              <!-- <a href="/{{ page.lang }}/search/">{{ t.nav.search }}</a> -->
+              <!-- <a href="/{{ page.lang }}/about/">{{ t.nav.about }}</a> -->
+              <a href="/{{ page.lang }}/resume/">{{ t.nav.resume }}</a>
+              <!-- <a href="/{{ page.lang }}/archive/">{{ t.nav.archive }}</a> -->
+              {% include language-switcher.html %}
             </nav>
           </header>
         </div>

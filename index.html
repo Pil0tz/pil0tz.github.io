@@ -1,100 +1,24 @@
 ---
-layout: default
-pagination:
-  enabled: true
+layout: none
 ---
-
-<div class="posts">
-	<!-- This is where we change what the posts show up like on the home page -->
-	{% for post in paginator.posts %} 
-	{% unless post.exclude %}
-	{% unless post.upcoming %}
-		<article class="post blogroll">
-			<a href="{{ site.baseurl }}{{ post.url }}">
-				{% if post.cover %}
-				<img class='cover-image blogroll' src="{{- post.cover | relative_url -}}" alt="Cover image not found" />
-				{% else %}
-				<img class='cover-image blogroll' src="/images/covers/default-cover.jpg" alt="Cover image not found" />
-				{% endif %}
-					<div class="post-description">
-						<h1 class="post-title">{{ post.title }}</h1>
-			</a>
-						<div class="post-excerpt"> {{ post.excerpt }}
-
-						</div>
-						<div class="post-meta">
-							<a class="read-more" href="{{ site.baseurl }}{{ post.url }}">Read More</a>
-							<p class="post_date">{{ post.date | date: "%B %e, %Y" }}</p>
-							<!-- <p class="post_date">Coming soon!</p> -->
-						</div>
-					</div>
-		</article>
-	{% endunless %}
-	{% endunless %}
-	{% endfor %}
-</div>
-
-<!-- TEMPORARY BANNER UNTIL PROJECTS ARE FINISHED -->
-<div class="banner">
-	<!-- <img id="banner-image" src="/images/home-cover.jpg" alt="Banner image not found" /> -->
-	<div class="banner-text">
-		<h1>What I'm working on</h1>
-		<p class=temp-link>I'm still working hard to make these projects a reality. In the meanwhile, <a href="/resume">check out my resume!</a></p>
-	</div>
-</div>
-
-<div class="posts">	
-	<!-- This is where we change what the posts show up like on the home page -->
-	{% for post in paginator.posts %} 
-	{% unless post.exclude %}
-	{% if post.upcoming %}
-		<article class="post blogroll">
-			<a href="{{ site.baseurl }}{{ post.url }}">
-				{% if post.cover %}
-				<img class='cover-image blogroll' src="{{- post.cover | relative_url -}}" alt="Cover image not found" />
-				{% else %}
-				<img class='cover-image blogroll' src="/images/covers/default-cover.jpg" alt="Cover image not found" />
-				{% endif %}
-					<div class="post-description">
-						<h1 class="post-title">{{ post.title }}</h1>
-			</a>
-						<div class="post-excerpt"> {{ post.excerpt }}</div>
-						<div class="post-meta">
-							<a class="read-more" href="{{ site.baseurl }}{{ post.url }}">Read More</a>
-							<!-- <p class="post_date">{{ post.date | date: "%B %e, %Y" }}</p> -->
-							<p class="post_date">Coming soon!</p>
-						</div>
-					<!-- </div> -->
-		</article>
-	{% endif %}
-	{% endunless %}
-	{% endfor %}
-</div>
-
-	<!-- pagination
-	{% if paginator.total_pages > 1 %}
-	<div class="pagination">
-		{% if paginator.previous_page %}
-			<a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
-		{% else %}
-			<span>&laquo; Prev</span>
-		{% endif %}
-
-		{% for page in (1..paginator.total_pages) %}
-			{% if page == paginator.page %}
-				<span class="webjeda">{{ page }}</span>
-			{% elsif page == 1 %}
-				<a href="{{ '/' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
-			{% else %}
-				<a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-			{% endif %}
-		{% endfor %}
-
-		{% if paginator.next_page %}
-			<a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
-		{% else %}
-			<span>Next &raquo;</span>
-		{% endif %}
-	</div>
-	{% endif %}
-	-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    // Check for saved preference first
+    const savedLang = localStorage.getItem('preferred_lang');
+    const userLang = navigator.language || navigator.userLanguage;
+    const detectedLang = userLang.toLowerCase().startsWith('nl') ? 'nl' : 'en';
+    const finalLang = savedLang || detectedLang;
+    window.location.href = `/${finalLang}/`;
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=/en/">
+  </noscript>
+</head>
+<body>
+  <p>Redirecting... <a href="/en/">English</a> | <a href="/nl/">Nederlands</a></p>
+</body>
+</html>

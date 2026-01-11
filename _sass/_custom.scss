@@ -1,7 +1,42 @@
 //TODOS
     // TODO: change font and figure out how the list of fonts works
     // TODO: cut off the excerpt after x amount of lines (4?)
-    // TODO: implement multiple language support (https://github.com/kurtsson/jekyll-multiple-languages-plugin)
+
+// LANGUAGE SWITCHER
+.language-switcher {
+  display: inline-flex;
+  gap: 0.5rem;
+  margin-left: 1rem;
+  align-items: center;
+
+  .lang-current {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .lang-link {
+    color: #666;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: #f5f5f5;
+      border-color: #999;
+    }
+  }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .language-switcher {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    display: flex;
+  }
+}
 
 // HOME BANNER
 .banner {

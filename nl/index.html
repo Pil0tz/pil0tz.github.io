@@ -1,0 +1,74 @@
+---
+layout: default
+title: Portfolio
+lang: nl
+alternate_lang_url: /en/
+pagination:
+  enabled: true
+  permalink: /nl/page/:num/
+---
+{% assign t = site.data.translations[page.lang] %}
+
+<div class="posts">
+	<!-- This is where we change what the posts show up like on the home page -->
+	{% for post in paginator.posts %}
+	{% unless post.exclude %}
+	{% unless post.upcoming %}
+		<article class="post blogroll">
+			<a href="{{ post.url }}">
+				{% if post.cover %}
+				<img class='cover-image blogroll' src="{{- post.cover | relative_url -}}" alt="Cover image not found" />
+				{% else %}
+				<img class='cover-image blogroll' src="/images/covers/default-cover.jpg" alt="Cover image not found" />
+				{% endif %}
+					<div class="post-description">
+						<h1 class="post-title">{{ post.title }}</h1>
+			</a>
+						<div class="post-excerpt"> {{ post.excerpt }}
+
+						</div>
+						<div class="post-meta">
+							<a class="read-more" href="{{ post.url }}">{{ t.ui.read_more }}</a>
+							<p class="post_date">{{ post.date | date: t.date.format }}</p>
+						</div>
+					</div>
+		</article>
+	{% endunless %}
+	{% endunless %}
+	{% endfor %}
+</div>
+
+<!-- TEMPORARY BANNER UNTIL PROJECTS ARE FINISHED -->
+<div class="banner">
+	<div class="banner-text">
+		<h1>{{ t.ui.what_working_on }}</h1>
+		<p class=temp-link>{{ t.ui.banner_intro }} <a href="/{{ page.lang }}/resume/">{{ t.ui.check_resume_link }}</a></p>
+	</div>
+</div>
+
+<div class="posts">
+	<!-- This is where we change what the posts show up like on the home page -->
+	{% for post in paginator.posts %}
+	{% unless post.exclude %}
+	{% if post.upcoming %}
+		<article class="post blogroll">
+			<a href="{{ post.url }}">
+				{% if post.cover %}
+				<img class='cover-image blogroll' src="{{- post.cover | relative_url -}}" alt="Cover image not found" />
+				{% else %}
+				<img class='cover-image blogroll' src="/images/covers/default-cover.jpg" alt="Cover image not found" />
+				{% endif %}
+					<div class="post-description">
+						<h1 class="post-title">{{ post.title }}</h1>
+			</a>
+						<div class="post-excerpt"> {{ post.excerpt }}</div>
+						<div class="post-meta">
+							<a class="read-more" href="{{ post.url }}">{{ t.ui.read_more }}</a>
+							<p class="post_date">{{ t.ui.coming_soon }}</p>
+						</div>
+					<!-- </div> -->
+		</article>
+	{% endif %}
+	{% endunless %}
+	{% endfor %}
+</div>

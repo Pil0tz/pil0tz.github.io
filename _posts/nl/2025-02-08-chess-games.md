@@ -1,13 +1,18 @@
 ---
 layout: post
-title: Does spending more time on a chess move increase its quality? Analyzing 200k online games
-categories: Chess
-permalink: /chess/analyzing-online-games
+title: Levert meer tijd besteden aan een schaakzet een betere zet op? Analyse van 200k online partijen
+lang: nl
+alternate_lang_url: /en/chess/analyzing-online-games/
+categories: Schaken
+permalink: /nl/chess/analyzing-online-games/
 cover: /images/covers/chess-games-cover.jpg
 exclude: false
 upcoming: false
 toc: true
 ---
+
+# Deze pagina is nog niet vertaald
+
 Chess is as much about finding the best move as it is about managing your available time, but does going 'into the tank' actually result in a better move? In this article I try to make sense of hundreds of thousands of moves, and learn a thing or two about continuous variables in the process.
 
 ----
