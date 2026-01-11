@@ -1,15 +1,10 @@
----
-layout: page
-permalink: /archive/
-title: Posts Archive
-exclude: true
----
-
+{% assign t = site.data.translations[page.lang] %}
 
 <div id="archives">
   <section id="archive">
-     <h3>Most Recent Posts</h3>
-      {%for post in site.posts %}
+     <h3>{{ t.archive.most_recent }}</h3>
+      {% for post in site.posts %}
+      {% if post.lang == page.lang %}
       {% unless post.next %}
       <ul class="this">
           {% else %}
@@ -26,9 +21,10 @@ exclude: true
           <h3 style="text-align:left;">{{ post.date | date: '%B %Y' }}</h3>
           {% endif %}
           {% endunless %}
-          <p><b><a href="{{ site.baseurl }}{{ post.url }}">{% if post.title and post.title != "" %}{{post.title}}{% else %}{{post.excerpt |strip_html}}{%endif%}</a></b> - {% if post.date and post.date != "" %}{{ post.date | date: "%e %B %Y" }}{%endif%}</p>
-          {% endfor %}
+          <p><b><a href="{{ site.baseurl }}{{ post.url }}">{% if post.title and post.title != "" %}{{post.title}}{% else %}{{post.excerpt |strip_html}}{%endif%}</a></b> - {% if post.date and post.date != "" %}{{ post.date | date: t.date.format }}{%endif%}</p>
+      {% endif %}
+      {% endfor %}
       </ul>
-    <h3>Oldest Posts</h3>
+    <h3>{{ t.archive.oldest }}</h3>
   </section>
 </div>

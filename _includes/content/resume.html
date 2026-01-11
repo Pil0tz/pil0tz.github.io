@@ -1,8 +1,5 @@
----
-layout: page
-title: 
-permalink: /resume/
----
+{% assign t = site.data.translations[page.lang] %}
+{% assign cv = site.data[page.lang].cv %}
 <html itemscope itemtype="http://schema.org/Person">
   <meta itemprop="telephone" content="{{ site.resume_contact_telephone }}"/>
   <meta itemprop="address" content="{{ site.resume_contact_address }}"/>
@@ -37,22 +34,17 @@ permalink: /resume/
     {{ site.resume_header_intro }}
   </div>
 
-  {% if site.resume_looking_for_work == 'yes' %}
-  <a href="mailto:{{ site.resume_contact_email }}" class="contact-button no-print" itemprop="email">Send me an email</a>
-  {% elsif site.resume_looking_for_work == 'no' %}
-  <a class="contact-button not-looking no-print">I'm not looking for work right now.</a>
-  {% else %}
-  {% endif %}
+  <a href="mailto:{{ site.resume_contact_email }}" class="contact-button no-print" itemprop="email">{{ t.ui.send_email }}</a>
 
 
   <!-- begin Education -->
   {% if site.resume_section_education %}
   <section class="content-section">
     <header class="section-header">
-      <h2>Education</h2>
+      <h2>{{ t.resume.sections.education }}</h2>
     </header>
 
-    {% for education in site.data.cv.education %}
+    {% for education in cv.education %}
     <div class="resume-item" itemscope itemprop="alumniOf" itemtype="http://schema.org/CollegeOrUniversity">
       <h3 class="resume-item-title" itemprop="name">{% if education.url %}<a href="{{ education.url }}" target="_blank" itemprop="url">{{ education.uni }}</a>{% else %}{{ education.uni }}{% endif %}</h3>
       <!-- <h3 class="resume-item-title" itemprop="name">{{ education.uni }}</h3> -->
@@ -77,10 +69,10 @@ permalink: /resume/
   {% if site.resume_section_projects %}
   <section class="content-section">
     <header class="section-header">
-      <h2>Projects</h2>
+      <h2>{{ t.resume.sections.projects }}</h2>
     </header>
 
-    {% for project in site.data.cv.projects %}
+    {% for project in cv.projects %}
     <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
       <h3 class="resume-item-title" itemprop="name">{% if project.url %}<a href="{{ project.url }}" itemprop="url">{{ project.project }}</a>{% else %}{{ project.project }}{% endif %}</h3>
@@ -99,10 +91,10 @@ permalink: /resume/
   <section class="content-section">
 
     <header class="section-header">
-      <h2>Experience</h2>
+      <h2>{{ t.resume.sections.experience }}</h2>
     </header>
 
-    {% for job in site.data.cv.experience %}
+    {% for job in cv.experience %}
     <div class="resume-item" itemscope itemprop="worksFor" itemtype="http://schema.org/Organization">
       <h3 class="resume-item-title" itemprop="name">{% if job.url %}<a href="{{ job.url }}" target="_blank" itemprop="url">{{ job.company }}</a>{% else %}{{ job.company }}{% endif %}</h3>
       <h4 class="resume-item-details" itemprop="description">{{ job.position }} &bull; {{ job.duration }}</h4>
@@ -120,9 +112,9 @@ permalink: /resume/
   <section class="content-section">
 
     <header class="section-header">
-      <h2>Skills</h2>
+      <h2>{{ t.resume.sections.skills }}</h2>
     </header>
-    {% for skill in site.data.cv.skills %}
+    {% for skill in cv.skills %}
     <div class="resume-item">
       <h4 class="resume-item-details">{{ skill.skill }}</h4>
       <p class="resume-item-copy">{{ skill.description }}</p>
@@ -142,7 +134,7 @@ permalink: /resume/
       <h2>Recognition</h2>
     </header>
 
-    {% for recognition in site.data.cv.recognitions %}
+    {% for recognition in cv.recognitions %}
     <div class="resume-item">
       <h3 class="resume-item-title" itemprop="award">{{ recognition.award }}</h3>
       <h4 class="resume-item-details">{{ recognition.organization }} &bull; {{ recognition.year }}</h4>
@@ -162,7 +154,7 @@ permalink: /resume/
       <h2>Associations</h2>
     </header>
 
-    {% for association in site.data.cv.associations %}
+    {% for association in cv.associations %}
     <div class="resume-item" itemscope itemprop="memberOf" itemtype="http://schema.org/Organization">
       <h3 class="resume-item-title" itemprop="name">{% if association.url %}<a href="{{ association.url }}">{{ association.organization }}</a>{% else %}{{ association.organization }}{% endif %}</h3>
       <h4 class="resume-item-details" itemprop="description">{{ association.role }} &bull; {{ association.year }}</h4>
@@ -184,7 +176,7 @@ permalink: /resume/
 
     <div class="resume-item">
       <ul class="resume-item-list">
-        {% for interest in site.data.cv.interests %}
+        {% for interest in cv.interests %}
         <li>{{ interest.description }}</li>
         {% endfor %}
       </ul>
@@ -204,7 +196,7 @@ permalink: /resume/
 
     <div class="resume-item">
       <ul class="resume-item-list">
-        {% for link in site.data.cv.links %}
+        {% for link in cv.links %}
         <li><a href={{ link.url }} itemprop="url">{{ link.description }}</a></li>
         {% endfor %}
       </ul>

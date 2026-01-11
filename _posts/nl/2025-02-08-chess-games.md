@@ -11,12 +11,14 @@ upcoming: false
 toc: true
 ---
 
-# Deze pagina is nog niet vertaald
 
 Chess is as much about finding the best move as it is about managing your available time, but does going 'into the tank' actually result in a better move? In this article I try to make sense of hundreds of thousands of moves, and learn a thing or two about continuous variables in the process.
 
 ----
 <!--more-->
+
+# Deze pagina is nog niet vertaald
+
 ## Dataset & Domain Understanding
 
 Analysis will be done using Python 3.12. Specifically, the Pandas and NumPy packages for analysis and data cleaning, along with Matplotlib and Seaborn for visualizations.

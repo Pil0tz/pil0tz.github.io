@@ -1,24 +1,19 @@
----
-layout: none
----
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Redirecting...</title>
+  <meta http-equiv="refresh" content="0; url=/en/">
   <script>
-    // Check for saved preference first
+    // Immediate redirect before page renders
     const savedLang = localStorage.getItem('preferred_lang');
     const userLang = navigator.language || navigator.userLanguage;
     const detectedLang = userLang.toLowerCase().startsWith('nl') ? 'nl' : 'en';
     const finalLang = savedLang || detectedLang;
-    window.location.href = `/${finalLang}/`;
+    window.location.replace('/' + finalLang + '/');
   </script>
-  <noscript>
-    <meta http-equiv="refresh" content="0; url=/en/">
-  </noscript>
+  <title>Redirecting...</title>
 </head>
 <body>
-  <p>Redirecting... <a href="/en/">English</a> | <a href="/nl/">Nederlands</a></p>
+  <p>Redirecting to <a href="/en/">English</a> or <a href="/nl/">Nederlands</a>...</p>
 </body>
 </html>

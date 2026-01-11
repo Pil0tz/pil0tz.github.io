@@ -1,9 +1,9 @@
 <div class="language-switcher">
   {% if page.lang == 'en' %}
-    <a href="{{ page.alternate_lang_url }}" class="lang-link" onclick="localStorage.setItem('preferred_lang', 'nl')">NL</a>
-    <span class="lang-current">EN</span>
+    <span class="lang-link"><a href="{{ page.alternate_lang_url }}" onclick="localStorage.setItem('preferred_lang', 'nl')">NL</a></span>
+    <span class="lang-link lang-current"><span>EN</span></span>
   {% elsif page.lang == 'nl' %}
-    <span class="lang-current">NL</span>
-    <a href="{{ page.alternate_lang_url }}" class="lang-link" onclick="localStorage.setItem('preferred_lang', 'en')">EN</a>
+    <span class="lang-link lang-current"><span>NL</span></span>
+    <span class="lang-link"><a href="{{ page.alternate_lang_url }}" onclick="localStorage.setItem('preferred_lang', 'en')">EN</a></span>
   {% endif %}
 </div>

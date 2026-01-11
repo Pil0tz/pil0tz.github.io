@@ -1,7 +1,7 @@
 en:
   site:
     name: "Jens Korzilius"
-    description: "Aspiring Data Analyst"
+    description: "BI Consultant / Data Analyst"
   nav:
     portfolio: "Portfolio"
     resume: "Resume"
@@ -16,9 +16,12 @@ en:
     check_resume_link: "check out my resume!"
     share: "Share:"
     send_email: "Send me an email"
-    not_looking: "I'm not looking for work right now."
+    search_placeholder: "Search through the blog posts..."
   date:
     format: "%B %e, %Y"
+  archive:
+    most_recent: "Most Recent Posts"
+    oldest: "Oldest Posts"
   resume:
     title: "Curriculum Vitae"
     sections:
@@ -34,7 +37,7 @@ en:
 nl:
   site:
     name: "Jens Korzilius"
-    description: "Aspirant Data Analist"
+    description: "BI Consultant / Data Analist"
   nav:
     portfolio: "Portfolio"
     resume: "CV"
@@ -45,13 +48,16 @@ nl:
     read_more: "Lees meer"
     coming_soon: "Binnenkort beschikbaar!"
     what_working_on: "Waar ik aan werk"
-    banner_intro: "Ik werk nog hard om deze projecten tot leven te brengen. In de tussentijd,"
+    banner_intro: "Momenteel ben ik hard aan het werk om deze projecten tot leven te brengen. In de tussentijd,"
     check_resume_link: "bekijk mijn CV!"
     share: "Delen:"
     send_email: "Stuur me een e-mail"
-    not_looking: "Ik ben momenteel niet op zoek naar werk."
+    search_placeholder: "Zoek door de blogposts..."
   date:
     format: "%-d %B %Y"
+  archive:
+    most_recent: "Meest Recente Posts"
+    oldest: "Oudste Posts"
   resume:
     title: "Curriculum Vitae"
     sections:
