@@ -6,6 +6,7 @@
     <title>{% if page.title %}{{ page.title }} – {% endif %}{{ t.site.name }} – {{ t.site.description }}</title>
     {% seo title=false %}
     {% include hreflang.html %}
+    {% include head.html %}
     {% include meta.html %}
     
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/style.css" />

@@ -1,9 +1,17 @@
 <div class="language-switcher">
   {% if page.lang == 'en' %}
-    <span class="lang-link"><a href="{{ page.alternate_lang_url }}" onclick="localStorage.setItem('preferred_lang', 'nl')">NL</a></span>
-    <span class="lang-link lang-current"><span>EN</span></span>
+    <span class="lang-link"><a href="{{ page.alternate_lang_url }}" onclick="localStorage.setItem('preferred_lang', 'nl')">
+      <span class="fi fi-nl"></span>
+    </a></span>
+    <span class="lang-link lang-current">
+      <span class="fi fi-gb"></span>
+    </span>
   {% elsif page.lang == 'nl' %}
-    <span class="lang-link lang-current"><span>NL</span></span>
-    <span class="lang-link"><a href="{{ page.alternate_lang_url }}" onclick="localStorage.setItem('preferred_lang', 'en')">EN</a></span>
+    <span class="lang-link lang-current">
+      <span class="fi fi-nl"></span>
+    </span>
+    <span class="lang-link"><a href="{{ page.alternate_lang_url }}" onclick="localStorage.setItem('preferred_lang', 'en')">
+      <span class="fi fi-gb"></span>
+    </a></span>
   {% endif %}
 </div>
