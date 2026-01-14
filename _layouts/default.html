@@ -26,17 +26,17 @@
         <div class="container">
           <header class="masthead clearfix">
               <!-- Site information -->
-            <a href="/{{ page.lang }}/" class="site-avatar"><img src="{{ site.baseurl }}{{ site.avatar }}" alt="{{ site.title }}" /></a>
+            <a href="/{{ page.lang }}/portfolio/" class="site-avatar"><img src="{{ site.baseurl }}{{ site.avatar }}" alt="{{ site.title }}" /></a>
             <div class="site-info">
-              <h1 class="site-name"><a href="/{{ page.lang }}/">{{ t.site.name }}</a></h1>
+              <h1 class="site-name"><a href="/{{ page.lang }}/portfolio/">{{ t.site.name }}</a></h1>
               <p class="site-description">{{ t.site.description }}</p>
             </div>
               <!-- Search menu -->
             <nav>
-              <a href="/{{ page.lang }}/">{{ t.nav.portfolio }}</a>
+              <a class="nav-link" href="/{{ page.lang }}/portfolio/">{{ t.nav.portfolio }}</a>
               <!-- <a href="/{{ page.lang }}/search/">{{ t.nav.search }}</a> -->
               <!-- <a href="/{{ page.lang }}/about/">{{ t.nav.about }}</a> -->
-              <a href="/{{ page.lang }}/resume/">{{ t.nav.resume }}</a>
+              <a class="nav-link" href="/{{ page.lang }}/resume/">{{ t.nav.resume }}</a>
               <!-- <a href="/{{ page.lang }}/archive/">{{ t.nav.archive }}</a> -->
               {% include language-switcher.html %}
             </nav>

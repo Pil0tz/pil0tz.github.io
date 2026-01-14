@@ -24,6 +24,13 @@ en:
     oldest: "Oldest Posts"
   resume:
     title: "Curriculum Vitae"
+    intro: |
+      Graduate in Clinical Psychology, who found his passion for statistics and data analysis during his studies 
+      and pivoted to apply and improve them in a business intelligence context. 
+      Every day, after work, I self-learn more and more skills to improve my analytical thinking and technical skills.
+      I am a fast and motivated learner, and not afraid to ask questions. 
+      Below you can read about my journey, which recently took me from my home town of Tilburg to the beautiful Rotterdam, and what has brought me to this point.
+
     sections:
       education: "Education"
       experience: "Experience"
@@ -60,6 +67,12 @@ nl:
     oldest: "Oudste Posts"
   resume:
     title: "Curriculum Vitae"
+    intro: |
+      Afgestudeerde in de Klinische Psychologie, die zijn passie voor statistiek en data-analyse ontdekte tijdens zijn studie 
+      en deze vervolgens toepaste en verder ontwikkelde binnen een business intelligence context. 
+      Elke dag na werktijd leer ik er nieuwe vaardigheden bij om mijn analytisch denkvermogen en technische capaciteiten te verbeteren. 
+      Ik ben een snelle en gemotiveerde leerling, en ben niet bang om vragen te stellen.
+      Hieronder kunt u lezen over mijn reis, die me onlangs van mijn geboortestad Tilburg naar het prachtige Rotterdam heeft gebracht, en wat me tot dit punt heeft gebracht.
     sections:
       education: "Opleiding"
       experience: "Werkervaring"

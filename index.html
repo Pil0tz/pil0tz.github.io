@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=/en/">
-  <script>
-    // Immediate redirect before page renders
-    const savedLang = localStorage.getItem('preferred_lang');
-    const userLang = navigator.language || navigator.userLanguage;
-    const detectedLang = userLang.toLowerCase().startsWith('nl') ? 'nl' : 'en';
-    const finalLang = savedLang || detectedLang;
-    window.location.replace('/' + finalLang + '/');
-  </script>
-  <title>Redirecting...</title>
-</head>
-<body>
-  <p>Redirecting to <a href="/en/">English</a> or <a href="/nl/">Nederlands</a>...</p>
-</body>
-</html>
+---
+layout: default
+title: Home
+lang: en
+permalink: /
+---
+
+<script>
+  // Redirect to Dutch resume
+  window.location.replace('/nl/resume');
+</script>
+
+<p>Redirecting to <a href="/nl/resume/">Dutch Resume</a>...</p>

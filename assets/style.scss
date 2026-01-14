@@ -347,26 +347,40 @@ nav {
   margin-top: 23px; // @TODO: Vertically middle align
   margin-right: 10px;
   font-family: $helveticaNeue;
-  font-size: 18px;
+  font-size: 1.5rem;
 
   @include mobile {
     float: none;
     margin-top: 9px;
     display: block;
-    font-size: 16px;
+    font-size: 1.5rem;
   }
 
-  a {
+  .nav-link {
     margin-left: 20px;
     color: $darkGray;
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
 
+
     @include mobile {
       margin: 0 10px;
-      color: $lightPurple;
+      color: $darkGray;
+      vertical-align: middle;
+      // border-bottom: 1px solid $lightGray;
+      // text-decoration: underline;
+      // text-decoration-color: $DarkerGray;
+      // text-decoration-thickness: 2px;
     }
+  }
+  .nav-link:hover {
+      color: $lightPurple;
+  }
+
+  .nav-link:last-child {
+    padding-right: 5rem;
+    background-color:#4CAF50;
   }
 }
 

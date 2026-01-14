@@ -1,17 +1,17 @@
 # Skills
 - skill: Presenteren & Openbare spreekvaardigheden
   description: |
-    In de middelbare school haalde ik de finale van het Nederlands kampioenschap debatteren (<a href="https://schooldebatteren.nl/toernooien/nk-debatteren-havo-vwo/" target="_blank">NK Debatteren</a>).
-    Dit gaf me het zelfvertrouwen en de spreekvaardigheden om mijn ideeën duidelijk te presenteren voor grote groepen; iets wat ik blijf verbeteren sinds ik met mijn studies begon.
+    Op de middelbare school haalde ik de finale van het <a href="https://schooldebatteren.nl/toernooien/nk-debatteren-havo-vwo/" target="_blank">NK debatteren voor scholieren</a>.
+    Dit gaf me het zelfvertrouwen en de spreekvaardigheden om mijn ideeën duidelijk te presenteren voor grote groepen.
 
 - skill: Actief Luisteren
   description: |
-    Of het nu gaat om een cliënt in een (fictief) psychologisch intakegesprek, een potentiële klant die op zoek is naar de beste deal voor een product, of het bespreken van problemen met mijn familie, luisteren is essentieel.
-    Tot de kern komen van wat iemand echt vraagt, in plaats van aannames te maken over wat je denkt dat ze zeggen, is een van de meest waardevolle vaardigheden waar ik trots op ben.
+    Of het nu gaat om een cliënt in een (fictief) psychologisch intakegesprek, een potentiële klant die op zoek is naar de beste deal voor een product, of het bespreken van problemen met naasten, luisteren is essentieel.
+    Tot de kern komen van wat iemand echt vraagt, in plaats van aannames te maken over wat je denkt dat ze zeggen, is een van de meest waardevolle vaardigheden die ik meegenomen heb uit mijn studie.
 
 - skill: Data-analyse in Python
   description: |
-    Ik gebruik Pandas, statsmodels en vele anderen voor datamanipulatie en -opschoning, samen met Seaborn, Matplotlib, Plotly en meer voor visualisatie.
+    Ik gebruik Pandas/Polars, statsmodels en vele anderen voor datamanipulatie en -opschoning, samen met Seaborn, Matplotlib, Plotly en meer voor visualisatie.
     Met deze pakketten maak ik Jupyter Notebooks over zowel mijn persoonlijke interesses als belangrijke onderwerpen, waarvan de resultaten op deze website gedeeld zullen worden.
 
 - skill: SQL
@@ -19,7 +19,7 @@
     Data kan niet worden geanalyseerd als het niet toegankelijk is. Daarom was SQL een van de eerste tools die ik leerde toen ik begon met mijn transitie naar analytics.
     Sindsdien heb ik meerdere certificeringen met SQL behaald en databaseschema's en -implementaties ontworpen voor meerdere universiteitsprojecten.
 
-- skill: Statistiek
+- skill: Statistisch redeneren
   description: |
     Vóór de universiteit hield ik nooit van wiskunde en geloofde ik dat ik er nooit goed in zou zijn.
     Maar statistiek gaf me een concrete reden om wiskunde te gebruiken; om met meer zekerheid conclusies over de wereld te trekken.

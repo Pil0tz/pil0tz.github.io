@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Levert meer tijd besteden aan een schaakzet een betere zet op? Analyse van 200k online partijen
+title: Zorgt langer nadenken voor een betere zet? Analyse van 200k online schaakpartijen
 lang: nl
 alternate_lang_url: /en/chess/analyzing-online-games/
 categories: Schaken
@@ -11,13 +11,12 @@ upcoming: false
 toc: true
 ---
 
-
-Chess is as much about finding the best move as it is about managing your available time, but does going 'into the tank' actually result in a better move? In this article I try to make sense of hundreds of thousands of moves, and learn a thing or two about continuous variables in the process.
+Het zoeken van naar de beste zet is in het schaken net zo belangrijk als goed omgaan met je beschikbare tijd, maar resulteert langer peinzen altijd in een betere uitkomst? In deze blog ontrafel ik de data van miljoenen zetten, en kom ondertussen achter de gevaren en tekortkomingen van continue variabelen.
 
 ----
 <!--more-->
 
-# Deze pagina is nog niet vertaald
+### Deze pagina origineel in het Engels geschreven, is nog niet vertaald
 
 ## Dataset & Domain Understanding
 

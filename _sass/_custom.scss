@@ -19,7 +19,6 @@
     padding: 6px 0;
     border-radius: 4px;
     transition: all 0.15s ease;
-    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,13 +31,23 @@
     a {
       color: inherit;
       text-decoration: none;
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
       height: 100%;
+
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
 
-    span {
-      display: block;
+    > span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
       height: 100%;
     }
@@ -136,8 +145,9 @@ box-shadow: $DefaultBoxShadow;
         margin: 0;
         padding: 0;
     }
-    // .post-excerpt {
-    // }
+    .post-excerpt {
+      color: $darkerGray;
+    }
     .post-meta { // Date and Read More
         // margin-left: 1.2em;
             @include mobile {margin:0}
@@ -292,7 +302,7 @@ table {
     right: 1rem;
     width: 20vw;
     min-width: 15vw;
-    max-width: 30%;
+    max-width: 20%;
     margin: 0;
     align-self: flex-start;
     z-index: 100;
@@ -338,7 +348,7 @@ table {
     color: $white;
     line-height: 1.8rem;
     padding: 0.9rem .8rem;
-    font-weight: 600;
+    font-weight: 500;
     list-style: none;
     counter-reset: toc-counter;
 }
@@ -346,6 +356,7 @@ table {
 .toc__list > li {
     position: relative;
     display: block;
+    font-size: 0.7em;
     padding-left: 2em;
     margin-bottom: 0.5em;
     list-style: none;
