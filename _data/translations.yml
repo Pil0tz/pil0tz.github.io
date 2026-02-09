@@ -29,7 +29,6 @@ en:
       and pivoted to apply and improve them in a business intelligence context. 
       Every day, after work, I self-learn more and more skills to improve my analytical thinking and technical skills.
       I am a fast and motivated learner, and not afraid to ask questions. 
-      Below you can read about my journey, which recently took me from my home town of Tilburg to the beautiful Rotterdam, and what has brought me to this point.
 
     sections:
       education: "Education"
@@ -40,6 +39,7 @@ en:
       associations: "Associations"
       interests: "Outside Interests"
       links: "Additional Links"
+      social_links: "Social Links"
 
 nl:
   site:
@@ -82,3 +82,4 @@ nl:
       associations: "Verenigingen"
       interests: "Interesses"
       links: "Aanvullende Links"
+      social_links: "Social Links"

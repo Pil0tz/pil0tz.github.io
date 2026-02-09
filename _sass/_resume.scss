@@ -960,9 +960,9 @@
         }
       }
     }
-    
+
     .print-only { display: none !important }
-    
+
     @media print {
       .no-print { display: none !important }
       .print-only { display: block !important }
@@ -986,13 +986,13 @@
           font-size: 16px;
           line-height: .7em;
         }
-    
+
         .resume-item-details {
           font-size: 12px;
           margin: 0 0 .75rem;
           line-height: .7em;
           font-style: italic;
-    
+
           &.award-title {
             font-size: 11px;
           }
@@ -1001,3 +1001,5 @@
     }
 
   }
+
+  .print-only { display: none !important }
