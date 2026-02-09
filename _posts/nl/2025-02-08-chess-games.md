@@ -1,17 +1,23 @@
 ---
 layout: post
-title: Does spending more time on a chess move increase its quality? Analyzing 200k online games
-categories: Chess
-permalink: /chess/analyzing-online-games
+title: Zorgt langer nadenken voor een betere zet? Analyse van 200k online schaakpartijen
+lang: nl
+alternate_lang_url: /en/chess/analyzing-online-games/
+categories: Schaken
+permalink: /nl/chess/analyzing-online-games/
 cover: /images/covers/chess-games-cover.jpg
 exclude: false
 upcoming: false
 toc: true
 ---
-Chess is as much about finding the best move as it is about managing your available time, but does going 'into the tank' actually result in a better move? In this article I try to make sense of hundreds of thousands of moves, and learn a thing or two about continuous variables in the process.
+
+Het zoeken van naar de beste zet is in het schaken net zo belangrijk als goed omgaan met je beschikbare tijd, maar resulteert langer peinzen altijd in een betere uitkomst? In deze blog ontrafel ik de data van miljoenen zetten, en kom ondertussen achter de gevaren en tekortkomingen van continue variabelen.
 
 ----
 <!--more-->
+
+### Deze pagina origineel in het Engels geschreven, is nog niet vertaald
+
 ## Dataset & Domain Understanding
 
 Analysis will be done using Python 3.12. Specifically, the Pandas and NumPy packages for analysis and data cleaning, along with Matplotlib and Seaborn for visualizations.

@@ -1,0 +1,85 @@
+en:
+  site:
+    name: "Jens Korzilius"
+    description: "BI Consultant / Data Analyst"
+  nav:
+    portfolio: "Portfolio"
+    resume: "Resume"
+    about: "About me"
+    search: "Search"
+    archive: "Archive"
+  ui:
+    read_more: "Read More"
+    coming_soon: "Coming soon!"
+    what_working_on: "What I'm working on"
+    banner_intro: "I'm still working hard to make these projects a reality. In the meanwhile,"
+    check_resume_link: "check out my resume!"
+    share: "Share:"
+    send_email: "Send me an email"
+    search_placeholder: "Search through the blog posts..."
+  date:
+    format: "%B %e, %Y"
+  archive:
+    most_recent: "Most Recent Posts"
+    oldest: "Oldest Posts"
+  resume:
+    title: "Curriculum Vitae"
+    intro: |
+      Graduate in Clinical Psychology, who found his passion for statistics and data analysis during his studies 
+      and pivoted to apply and improve them in a business intelligence context. 
+      Every day, after work, I self-learn more and more skills to improve my analytical thinking and technical skills.
+      I am a fast and motivated learner, and not afraid to ask questions. 
+
+    sections:
+      education: "Education"
+      experience: "Experience"
+      projects: "Projects"
+      skills: "Skills"
+      recognition: "Recognition"
+      associations: "Associations"
+      interests: "Outside Interests"
+      links: "Additional Links"
+      social_links: "Social Links"
+
+nl:
+  site:
+    name: "Jens Korzilius"
+    description: "BI Consultant / Data Analist"
+  nav:
+    portfolio: "Portfolio"
+    resume: "CV"
+    about: "Over mij"
+    search: "Zoeken"
+    archive: "Archief"
+  ui:
+    read_more: "Lees meer"
+    coming_soon: "Binnenkort beschikbaar!"
+    what_working_on: "Waar ik aan werk"
+    banner_intro: "Momenteel ben ik hard aan het werk om deze projecten tot leven te brengen. In de tussentijd,"
+    check_resume_link: "bekijk mijn CV!"
+    share: "Delen:"
+    send_email: "Stuur me een e-mail"
+    search_placeholder: "Zoek door de blogposts..."
+  date:
+    format: "%-d %B %Y"
+  archive:
+    most_recent: "Meest Recente Posts"
+    oldest: "Oudste Posts"
+  resume:
+    title: "Curriculum Vitae"
+    intro: |
+      Afgestudeerde in de Klinische Psychologie, die zijn passie voor statistiek en data-analyse ontdekte tijdens zijn studie 
+      en deze vervolgens toepaste en verder ontwikkelde binnen een business intelligence context. 
+      Elke dag na werktijd leer ik er nieuwe vaardigheden bij om mijn analytisch denkvermogen en technische capaciteiten te verbeteren. 
+      Ik ben een snelle en gemotiveerde leerling, en ben niet bang om vragen te stellen.
+      Hieronder kunt u lezen over mijn reis, die me onlangs van mijn geboortestad Tilburg naar het prachtige Rotterdam heeft gebracht, en wat me tot dit punt heeft gebracht.
+    sections:
+      education: "Opleiding"
+      experience: "Werkervaring"
+      projects: "Projecten"
+      skills: "Vaardigheden"
+      recognition: "Erkenning"
+      associations: "Verenigingen"
+      interests: "Interesses"
+      links: "Aanvullende Links"
+      social_links: "Social Links"

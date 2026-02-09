@@ -1,7 +1,7 @@
 # Skills
 - skill: Presenting & Public speaking
   description: | 
-    In highschool I got to the finals of the Dutch national debating competition (<a href="https://schooldebatteren.nl/toernooien/nk-debatteren-havo-vwo/" target="_blank">NK Debatteren</a>).
+    In highschool I got to the finals of the <a href="https://schooldebatteren.nl/toernooien/nk-debatteren-havo-vwo/" target="_blank">Dutch national debating championships for high schoolers</a>.
     This gave me the confidence and speaking skills to clearly present my ideas in front of large crowds; something I have been continually improving since starting my studies.
 
 - skill: Active Listening
@@ -11,7 +11,7 @@
 
 - skill: Data Analysis in Python
   description: | 
-    I've been using Pandas, statsmodels and many more for data manipulation and cleaning, along with Seaborn, Matplotlib, Plotly and more for visualization. 
+    I've been using Pandas/Polars, statsmodels and many more for data manipulation and cleaning, along with Seaborn, Matplotlib, Plotly and more for visualization. 
     With these packages I make Jupyter Notebooks about both my personal interests and important issues, the results of which will be shared on this website.
 
 - skill: SQL

@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+{% assign t = site.data.translations[page.lang] %}
 
 <article class="post detailed">
   <h1 class="post-title">{{ page.title }}</h1>
@@ -29,13 +30,13 @@ layout: default
         {% endfor %}
       </div> -->
       <div class="entry">
-        <nav id="mobile-toc" class="toc-mobile">
+        <!-- <nav id="mobile-toc" class="toc-mobile">
           {% toc %}
-        </nav>
+        </nav> -->
         {{ content }}
       </div>
       <div>
-        <p><span class="share-box">Share:</span> <a href="http://twitter.com/share?text={{ page.title }}&url={{site.url}}{{page.url}}" target="_blank">Twitter</a>, <a href="https://www.facebook.com/sharer.php?u={{site.url}}{{page.url}}" target="_blank">Facebook</a></p>
+        <p><span class="share-box">{{ t.ui.share }}</span> <a href="http://twitter.com/share?text={{ page.title }}&url={{site.url}}{{page.url}}" target="_blank">Twitter</a>, <a href="https://www.facebook.com/sharer.php?u={{site.url}}{{page.url}}" target="_blank">Facebook</a></p>
       </div>
 
   <!-- <div class="date">
@@ -44,8 +45,8 @@ layout: default
 
   {% include disqus.html %}
 </div>
-<nav class="toc-desktop">
+<!-- <nav class="toc-desktop">
   {% toc %}
-</nav>
+</nav> -->
   </div>
 </article>

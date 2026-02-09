@@ -1,12 +1,7 @@
----
-layout: page
-title: Search
-permalink: /search/
-exclude: true
----
+{% assign t = site.data.translations[page.lang] %}
 
 <div id="search-container">
-    <input type="text" id="search-input" placeholder="Search through the blog posts...">
+    <input type="text" id="search-input" placeholder="{{ t.ui.search_placeholder }}">
     <ul id="results-container"></ul>
 </div>
 
@@ -17,6 +12,6 @@ exclude: true
     searchInput: document.getElementById('search-input'),
     resultsContainer: document.getElementById('results-container'),
     searchResultTemplate: '<div style="text-align: left !important;"><a href="{url}"><h1 style="text-align:left !important;">{title}</h1></a><span style="text-align:left !important;">{date}</span></div>',
-    json: '{{ site.baseurl }}/search.json'
+    json: '/{{ page.lang }}/search.json'
     });
 </script>
