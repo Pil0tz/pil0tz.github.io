@@ -895,6 +895,22 @@
         text-align: left;
       }
     
+      .certifications {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  width: 100%;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+}
+
+.cert iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: block;
+}
+}
+
       .resume-item-title {
         @include sans_bold;
         text-align: left;
@@ -932,9 +948,6 @@
         }
       }
     
-      .resume-item-copy a {
-        border-bottom: none;
-      }
       .resume-item-title a {
         color: #333;
       }
