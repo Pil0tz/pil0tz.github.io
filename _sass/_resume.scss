@@ -111,14 +111,12 @@
   // layout
 
   @mixin section_border {
-    border-top: 4px solid #c7c7c7;
-    border-bottom: 2px solid #c7c7c7;
+    border-bottom: 2px solid;
     padding: .2rem 0 .4rem;
   }
 
   @mixin section_border_thin {
-    border-top: 1px solid #c7c7c7;
-    border-bottom: 1px solid #c7c7c7;
+    border-bottom: 1px solid;
     padding: .2rem 0 .2rem;
   }
 
@@ -411,6 +409,7 @@
     
     a {
       background-color: transparent;
+      // text-underline: $LightPurple;
     }
     
     /**
@@ -916,24 +915,32 @@
         }
       }
     
-      .resume-item-title,
       .resume-item-details,
-      .resume-item-copy,
+      .resume-item-title,
       .resume-item-list {
         a {
           // color: #333;
           text-decoration: none;
           border-bottom: 1px solid;
-    
+
           &:hover {
-            border-bottom: none;
-            color: #9c9c9c;
+            border-bottom: 1px solid $lightPurple;
+            color: $lightPurple;
           }
         }
       }
-    
-      .resume-item-copy a {
-        border-bottom: none;
+      .resume-item-copy {
+        a {
+          text-decoration: underline;
+          text-decoration-color: $lightPurple;
+          text-underline-offset: 3px;
+          text-decoration-thickness: 1px;
+
+          &:hover {
+            text-decoration: none;
+            color: $lightPurple;
+          }
+        }
       }
       .resume-item-title a {
         color: #333;
@@ -955,7 +962,7 @@
         color: #999;
     
         > a {
-          font-weight: 700;
+          font-weight: 600;
           color: #333;
         }
       }
