@@ -1,3 +1,5 @@
+@use "variables" as vars;
+
 .resume-wrapper {
       // Variables
   // ---------------------------------------/
@@ -940,21 +942,21 @@
           border-bottom: 1px solid;
 
           &:hover {
-            border-bottom: 1px solid $lightPurple;
-            color: $lightPurple;
+            border-bottom: 1px solid vars.$lightPurple;
+            color: vars.$lightPurple;
           }
         }
       }
       .resume-item-copy {
         a {
           text-decoration: underline;
-          text-decoration-color: $lightPurple;
+          text-decoration-color: vars.$lightPurple;
           text-underline-offset: 3px;
           text-decoration-thickness: 1px;
 
           &:hover {
             text-decoration: none;
-            color: $lightPurple;
+            color: vars.$lightPurple;
           }
         }
       }
