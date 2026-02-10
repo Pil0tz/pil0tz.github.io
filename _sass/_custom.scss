@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 //TODOS
     // TODO: change font and figure out how the list of fonts works
     // TODO: cut off the excerpt after x amount of lines (4?)
@@ -86,7 +88,7 @@
 // SIZING
 
 .container {
-   width: 70%;
+   width: 80%;
    max-width: 50rem;
    @media (max-width: $MobileCutoff) {
        width: 90%;

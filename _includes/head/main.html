@@ -1,0 +1,27 @@
+{% assign t = site.data.translations[page.lang] %}
+
+{% include analytics_head.html %}
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{% if page.title %}{{ page.title }} – {% endif %}{{ t.site.name }} – {{ t.site.description }}</title>
+{% seo title=false %}
+
+{% include hreflang.html %}
+{% include meta.html %}
+
+{% if site.resume_theme == 'default' %}
+<link href="https://fonts.googleapis.com/css?family=Lora:400,700|Open+Sans:400,300,800,700" rel="stylesheet" type="text/css">
+{% endif %}
+
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css">
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/print.css" media="print">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
+
+<link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/images/favicon-32x32.png">

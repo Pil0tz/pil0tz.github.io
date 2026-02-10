@@ -1,0 +1,15 @@
+{% if site.resume_section_links %}
+<section class="content-section">
+  <header class="section-header">
+    <h2>{{ t.resume.sections.links }}</h2>
+  </header>
+
+  <div class="resume-item">
+    <ul class="resume-item-list">
+      {% for link in cv.links %}
+      <li><a href={{ link.url }} itemprop="url">{{ link.description }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}

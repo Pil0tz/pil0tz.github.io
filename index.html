@@ -1,13 +1,47 @@
 ---
-layout: default
+layout: none
 title: Home
-lang: en
 permalink: /
 ---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0; url=/en/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <noscript>
+      <p>Redirecting to the English site. <a href="/en/">Continue</a></p>
+    </noscript>
+    <script>
+      (function () {
+        var stored = null;
+        try {
+          stored = localStorage.getItem("preferred_lang");
+        } catch (e) {}
 
-<script>
-  // Redirect to Dutch resume
-  window.location.replace('/nl/resume');
-</script>
+        var lang = "en";
+        if (stored === "nl" || stored === "en") {
+          lang = stored;
+        } else if (navigator && navigator.languages && navigator.languages.length) {
+          for (var i = 0; i < navigator.languages.length; i++) {
+            if (String(navigator.languages[i]).toLowerCase().indexOf("nl") === 0) {
+              lang = "nl";
+              break;
+            }
+          }
+        } else if (navigator && navigator.language) {
+          if (String(navigator.language).toLowerCase().indexOf("nl") === 0) {
+            lang = "nl";
+          }
+        }
 
-<p>Redirecting to <a href="/nl/resume/">Dutch Resume</a>...</p>
+        var target = lang === "nl" ? "/nl/" : "/en/";
+        window.location.replace(target);
+      })();
+    </script>
+    <p>Redirecting…</p>
+  </body>
+</html>

@@ -1,6 +1,15 @@
 <div class="language-switcher">
+  {% assign alt_url = page.alternate_lang_url %}
+  {% if alt_url == nil or alt_url == "" %}
+    {% if page.lang == "en" %}
+      {% assign alt_url = page.url | replace_first: "/en/", "/nl/" %}
+    {% elsif page.lang == "nl" %}
+      {% assign alt_url = page.url | replace_first: "/nl/", "/en/" %}
+    {% endif %}
+  {% endif %}
+
   {% if page.lang == 'en' %}
-    <span class="lang-link"><a href="{{ page.alternate_lang_url }}" onclick="localStorage.setItem('preferred_lang', 'nl')">
+    <span class="lang-link"><a href="{{ alt_url }}" onclick="localStorage.setItem('preferred_lang', 'nl')">
       <span class="fi fi-nl"></span>
     </a></span>
     <span class="lang-link lang-current">
@@ -10,7 +19,7 @@
     <span class="lang-link lang-current">
       <span class="fi fi-nl"></span>
     </span>
-    <span class="lang-link"><a href="{{ page.alternate_lang_url }}" onclick="localStorage.setItem('preferred_lang', 'en')">
+    <span class="lang-link"><a href="{{ alt_url }}" onclick="localStorage.setItem('preferred_lang', 'en')">
       <span class="fi fi-gb"></span>
     </a></span>
   {% endif %}

@@ -120,6 +120,7 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+  - index.html.bak
   - .well-known
 
 # TOC settings

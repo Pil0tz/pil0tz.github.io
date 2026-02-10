@@ -1,0 +1,53 @@
+---
+---
+@use "variables" as *;
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    background: $white;
+    color: $darkerGray;
+  }
+
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+
+  // Keep typography closer to screen styles
+  h1 { font-size: 30px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 20px; }
+  h4 { font-size: 18px; }
+
+  .wrapper-container,
+  .wrapper-main,
+  #main,
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  a { color: $darkerGray; }
+
+  // Resume-specific tweaks
+  .resume-wrapper {
+    .content-section { margin: 0 0 1.5rem; }
+    .resume-item-title { font-size: 1.5rem; line-height: 1.2; }
+    .resume-item-details { font-size: 1.1rem; line-height: 1.2; }
+  }
+
+  // Certificates smaller for print
+  .certifications {
+    gap: 0.5rem;
+  }
+  .cert iframe {
+    height: 200px !important;
+    width: 50% !important;
+  }
+}

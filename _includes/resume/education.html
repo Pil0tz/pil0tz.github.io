@@ -1,0 +1,24 @@
+{% if site.resume_section_education %}
+<section class="content-section">
+  <header class="section-header">
+    <h2>{{ t.resume.sections.education }}</h2>
+  </header>
+
+  {% for education in cv.education %}
+  <div class="resume-item" itemscope itemprop="alumniOf" itemtype="http://schema.org/CollegeOrUniversity">
+    <h3 class="resume-item-title" itemprop="name">{% if education.url %}<a href="{{ education.url }}" target="_blank" itemprop="url">{{ education.uni }}</a>{% else %}{{ education.uni }}{% endif %}</h3>
+    <h4 class="resume-item-details group" itemprop="description">{{ education.degree }} &bull; {{ education.year }}</h4>
+    <h5 class="resume-item-details award-title" itemprop="description">{{ education.award }}</h5>
+    <p class="resume-item-copy" itemprop="description">
+      <ul class="resume-item-list">
+        {% for award in education.awards %}
+        <li>{{ award.award }}</li>
+        {% endfor %}
+      </ul>
+    </p>
+
+    <p class="resume-item-copy">{{ education.summary | markdownify }}</p>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
