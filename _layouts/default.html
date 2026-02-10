@@ -1,29 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    {% include analytics_head.html %}
-    {% assign t = site.data.translations[page.lang] %}
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ t.site.name }} – {{ t.site.description }}</title>
-    {% seo title=false %}
-    {% include hreflang.html %}
-    {% include head.html %}
-    {% include meta.html %}
-    
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
-    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
-    
-    <meta name="theme-color" content="#000000">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/images/favicon-32x32.png">
-    
+    {% include head/main.html %}
   </head>
   
   <body>
     
 <!-- Header -->
-    <div class="wrapper-container no-print">
+    <div class="wrapper-container">
       <div class="wrapper-masthead">
-        <div class="container">
           <header class="masthead clearfix no-print">
               <!-- Site information -->
             <a href="/{{ page.lang }}/portfolio/" class="site-avatar"><img src="{{ site.baseurl }}{{ site.avatar }}" alt="{{ site.title }}" /></a>
@@ -32,28 +17,24 @@
               <p class="site-description">{{ t.site.description }}</p>
             </div>
               <!-- Search menu -->
-            <nav>
+            <nav class="links">
               <a class="nav-link" href="/{{ page.lang }}/portfolio/">{{ t.nav.portfolio }}</a>
-              <!-- <a href="/{{ page.lang }}/search/">{{ t.nav.search }}</a> -->
-              <!-- <a href="/{{ page.lang }}/about/">{{ t.nav.about }}</a> -->
               <a class="nav-link" href="/{{ page.lang }}/resume/">{{ t.nav.resume }}</a>
-              <!-- <a href="/{{ page.lang }}/archive/">{{ t.nav.archive }}</a> -->
               {% include language-switcher.html %}
             </nav>
           </header>
-        </div>
       </div>
 
       
 <!-- Main content -->
       <div class="wrapper-main">
-        <div id="main" role="main" class="container">
+        <div id="main" role="main"> 
           {{ content }}
         </div>
       </div>
 
 <!-- Footer -->
-      <div class="wrapper-footer">
+      <div class="wrapper-footer no-print">
         <div class="container">
           <footer class="footer">
             {% include svg-icons.html %}
@@ -63,5 +44,12 @@
     </div>
 
     {% include analytics.html %}
+    {% if page.lang %}
+    <script>
+      try {
+        localStorage.setItem("preferred_lang", "{{ page.lang }}");
+      } catch (e) {}
+    </script>
+    {% endif %}
   </body>
 </html>

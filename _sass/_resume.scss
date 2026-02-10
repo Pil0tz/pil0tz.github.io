@@ -988,44 +988,6 @@
     }
 
     .print-only { display: none !important }
-
-    @media print {
-      .no-print { display: none !important }
-      .print-only { display: block !important }
-      body { font-size: 12px; line-height: 1rem; }
-      .page-header { padding: 1rem 0 .2rem;
-        .header-name {
-          @include sans_bold;
-          font-size: 2rem;
-          margin: 0 0 .2rem;
-        }
-      }
-      .section-header {
-        @include section_border_thin;
-        margin-bottom: 1rem;
-        h2 { font-size: 1.2rem; line-height: 1.5rem; }
-      }
-      .content-section {
-        margin: 0 0 1rem;
-        .resume-item { margin-bottom: 1rem; }
-        .resume-item-title {
-          font-size: 16px;
-          line-height: .7em;
-        }
-
-        .resume-item-details {
-          font-size: 12px;
-          margin: 0 0 .75rem;
-          line-height: .7em;
-          font-style: italic;
-
-          &.award-title {
-            font-size: 11px;
-          }
-        }
-      }
-    }
-
   }
 
   .print-only { display: none !important }

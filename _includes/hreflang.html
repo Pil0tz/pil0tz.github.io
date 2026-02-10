@@ -1,5 +1,20 @@
 {% if page.lang %}
-<link rel="alternate" hreflang="en" href="{{ site.url }}{{ page.url | replace: page.lang, 'en' }}" />
-<link rel="alternate" hreflang="nl" href="{{ site.url }}{{ page.url | replace: page.lang, 'nl' }}" />
-<link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ page.url | replace: page.lang, 'en' }}" />
+  {% assign en_url = page.url %}
+  {% assign nl_url = page.alternate_lang_url %}
+
+  {% if page.lang == "nl" %}
+    {% assign nl_url = page.url %}
+    {% assign en_url = page.alternate_lang_url %}
+  {% endif %}
+
+  {% if en_url == nil or en_url == "" %}
+    {% assign en_url = page.url | replace_first: "/nl/", "/en/" %}
+  {% endif %}
+  {% if nl_url == nil or nl_url == "" %}
+    {% assign nl_url = page.url | replace_first: "/en/", "/nl/" %}
+  {% endif %}
+
+  <link rel="alternate" hreflang="en" href="{{ site.url }}{{ en_url }}" />
+  <link rel="alternate" hreflang="nl" href="{{ site.url }}{{ nl_url }}" />
+  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ en_url }}" />
 {% endif %}

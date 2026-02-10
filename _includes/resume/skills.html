@@ -1,0 +1,14 @@
+{% if site.resume_section_skills %}
+<section class="content-section">
+  <header class="section-header">
+    <h2>{{ t.resume.sections.skills }}</h2>
+  </header>
+
+  {% for skill in cv.skills %}
+  <div class="resume-item">
+    <h2 class="resume-item-details">{{ skill.skill }}</h2>
+    <p class="resume-item-copy">{{ skill.description }}</p>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
